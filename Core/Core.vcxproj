@@ -103,7 +103,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(PLUGIN_SDK_DIR)\Plugin_SA;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\enums;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\rw;$(PLUGIN_SDK_DIR)\shared;$(PLUGIN_SDK_DIR)\shared\game;$(SolutionDir)libs\sampapi\include;$(SolutionDir)libs\minhook\include;$(ProjectDir)src;$(ProjectDir)src\hooks;$(ProjectDir)src\patches;$(ProjectDir)src\utils;$(ProjectDir)src\gta;$(ProjectDir)src\sdk;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(PLUGIN_SDK_DIR)\Plugin_SA;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\enums;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\rw;$(PLUGIN_SDK_DIR)\shared;$(PLUGIN_SDK_DIR)\shared\game;$(SolutionDir)libs\sampapi\include;$(SolutionDir)libs\minhook\include;$(ProjectDir)src;$(ProjectDir)src\hooks;$(ProjectDir)src\patches;$(ProjectDir)src\utils;$(ProjectDir)src\gta;$(ProjectDir)src\sdk;$(DXSDK_DIR)Include;$(SolutionDir)libs\rakhook\include;$(SolutionDir)libs\rakhook\include\RakHook;$(SolutionDir)libs\rakhook\include\RakNet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <DebugInformationFormat>None</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -154,6 +154,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\minhook\include\MinHook.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakHook\detail.hpp" />
+    <ClInclude Include="..\libs\rakhook\include\RakHook\hooked_rakclient_interface.hpp" />
+    <ClInclude Include="..\libs\rakhook\include\RakHook\offsets.hpp" />
+    <ClInclude Include="..\libs\rakhook\include\RakHook\rakhook.hpp" />
+    <ClInclude Include="..\libs\rakhook\include\RakHook\samp.hpp" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\BitStream.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_HuffmanEncodingTree.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_HuffmanEncodingTreeNode.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_LinkedList.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_List.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_Map.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_OrderedList.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_Queue.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\NetworkTypes.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\PacketEnumerations.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\PacketPriority.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\PluginInterface.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\RakClientInterface.h" />
+    <ClInclude Include="..\libs\rakhook\include\RakNet\StringCompressor.h" />
     <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\AimStuff.h" />
     <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Animation.h" />
     <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CActor.h" />
@@ -479,13 +498,20 @@
     <ClInclude Include="src\utils\window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\libs\rakhook\src\RakHook\offsets.cpp" />
+    <ClCompile Include="..\libs\rakhook\src\RakHook\rakhook.cpp" />
+    <ClCompile Include="..\libs\rakhook\src\RakHook\samp.cpp" />
+    <ClCompile Include="..\libs\rakhook\src\RakNet\BitStream.cpp" />
+    <ClCompile Include="..\libs\rakhook\src\RakNet\DS_HuffmanEncodingTree.cpp" />
+    <ClCompile Include="..\libs\rakhook\src\RakNet\PluginInterface.cpp" />
+    <ClCompile Include="..\libs\rakhook\src\RakNet\StringCompressor.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\hooks\rpc_security.cpp" />
     <ClCompile Include="src\hooks\samp_events.cpp" />
     <ClCompile Include="src\patches\manager.cpp" />
     <ClCompile Include="src\patches\security.cpp" />
     <ClCompile Include="src\patches\splash_d3d.cpp" />
-    <ClCompile Include="src\samp\samp.hpp" />
+    <ClCompile Include="src\samp\samp_api.hpp" />
     <ClCompile Include="src\utils\chat.cpp" />
     <ClCompile Include="src\utils\window.cpp" />
   </ItemGroup>

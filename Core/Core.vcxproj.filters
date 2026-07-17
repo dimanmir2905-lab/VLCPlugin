@@ -49,6 +49,27 @@
     <Filter Include="Core\sdk">
       <UniqueIdentifier>{8526de47-a71c-4780-b9d7-4612f322498a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\rakhook">
+      <UniqueIdentifier>{395189d4-1921-46c3-ab4e-355f45c19b85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\rakhook\include">
+      <UniqueIdentifier>{015f65f2-b17c-402f-a3a9-6f75289bd50c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\rakhook\include\RakHook">
+      <UniqueIdentifier>{8735c135-e32a-4ebd-b52b-fbc4f1690dbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\rakhook\include\RakNet">
+      <UniqueIdentifier>{e151a97e-6bae-4bb9-84a7-5a548111616e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\rakhook\src">
+      <UniqueIdentifier>{17b795b8-0da7-44da-9cbb-2d8aebc22086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\rakhook\src\RakHook">
+      <UniqueIdentifier>{38512215-3202-4382-bcf3-787db094ecaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\rakhook\src\RakNet">
+      <UniqueIdentifier>{7fae5bf0-a288-447b-a55c-a44d46250e24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\libs\minhook\include\MinHook.h">
@@ -1023,12 +1044,69 @@
     <ClInclude Include="src\patches\splash_d3d.hpp">
       <Filter>Core\patches</Filter>
     </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakHook\detail.hpp">
+      <Filter>Файлы заголовков\rakhook\include\RakHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakHook\hooked_rakclient_interface.hpp">
+      <Filter>Файлы заголовков\rakhook\include\RakHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakHook\offsets.hpp">
+      <Filter>Файлы заголовков\rakhook\include\RakHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakHook\rakhook.hpp">
+      <Filter>Файлы заголовков\rakhook\include\RakHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakHook\samp.hpp">
+      <Filter>Файлы заголовков\rakhook\include\RakHook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\BitStream.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_HuffmanEncodingTree.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_HuffmanEncodingTreeNode.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_LinkedList.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_List.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_Map.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_OrderedList.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\DS_Queue.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\NetworkTypes.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\PacketEnumerations.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\PacketPriority.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\PluginInterface.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\RakClientInterface.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\rakhook\include\RakNet\StringCompressor.h">
+      <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\samp\samp.hpp">
+    <ClCompile Include="src\samp\samp_api.hpp">
       <Filter>Core\samp</Filter>
     </ClCompile>
     <ClCompile Include="src\patches\manager.cpp">
@@ -1051,6 +1129,27 @@
     </ClCompile>
     <ClCompile Include="src\patches\splash_d3d.cpp">
       <Filter>Core\patches</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\rakhook\src\RakHook\offsets.cpp">
+      <Filter>Файлы заголовков\rakhook\src\RakHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\rakhook\src\RakHook\rakhook.cpp">
+      <Filter>Файлы заголовков\rakhook\src\RakHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\rakhook\src\RakHook\samp.cpp">
+      <Filter>Файлы заголовков\rakhook\src\RakHook</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\rakhook\src\RakNet\BitStream.cpp">
+      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\rakhook\src\RakNet\DS_HuffmanEncodingTree.cpp">
+      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\rakhook\src\RakNet\PluginInterface.cpp">
+      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\rakhook\src\RakNet\StringCompressor.cpp">
+      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

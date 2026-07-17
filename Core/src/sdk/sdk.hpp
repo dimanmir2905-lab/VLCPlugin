@@ -4,7 +4,7 @@
 #include "gta.hpp"
 
 // SA-MP API
-#include "samp/samp.hpp"
+#include "samp/samp_api.hpp"
 
 // MinHook
 #include <MinHook.h>
