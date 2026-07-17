@@ -1,0 +1,59 @@
+#include "utils/window.hpp"
+#include <string>
+
+namespace Utils {
+
+    void SetCustomWindow(const char* title, const char* iconRelativePath) {
+        HWND hwnd = nullptr;
+
+        // 1. ѕробуем найти окно по наиболее частым названи€м заголовка
+        const char* possibleTitles[] = {
+            "GTA:SA:MP",
+            "GTA: San Andreas",
+            "GTA:SA"
+        };
+
+        for (const char* possibleTitle : possibleTitles) {
+            hwnd = FindWindowA(nullptr, possibleTitle);
+            if (hwnd) break;
+        }
+
+        // 2. ≈сли не нашли по заголовку, пробуем найти по классу окна (это ещЄ надЄжнее)
+        if (!hwnd) {
+            hwnd = FindWindowA("GTA:SA:MP", nullptr);
+        }
+        if (!hwnd) {
+            hwnd = FindWindowA("GTA:SA", nullptr);
+        }
+
+        // ≈сли окно так и не найдено, просто выходим
+        if (!hwnd) return;
+
+        // 3. ”станавливаем новый заголовок
+        SetWindowTextA(hwnd, title);
+
+        // 4. ‘ормируем абсолютный путь к иконке
+        char exePath[MAX_PATH];
+        GetModuleFileNameA(GetModuleHandleA(nullptr), exePath, MAX_PATH);
+
+        std::string dirPath = exePath;
+        size_t lastSlash = dirPath.find_last_of("\\/");
+        if (lastSlash != std::string::npos) {
+            dirPath = dirPath.substr(0, lastSlash + 1);
+        }
+
+        std::string fullPath = dirPath + iconRelativePath;
+
+        // 5. «агружаем и устанавливаем иконку (большую и маленькую дл€ панели задач и угла окна)
+        HICON hIconBig = reinterpret_cast<HICON>(LoadImageA(nullptr, fullPath.c_str(), IMAGE_ICON, 32, 32, LR_LOADFROMFILE));
+        HICON hIconSmall = reinterpret_cast<HICON>(LoadImageA(nullptr, fullPath.c_str(), IMAGE_ICON, 16, 16, LR_LOADFROMFILE));
+
+        if (hIconBig) {
+            SendMessageA(hwnd, WM_SETICON, ICON_BIG, reinterpret_cast<LPARAM>(hIconBig));
+        }
+        if (hIconSmall) {
+            SendMessageA(hwnd, WM_SETICON, ICON_SMALL, reinterpret_cast<LPARAM>(hIconSmall));
+        }
+    }
+
+}

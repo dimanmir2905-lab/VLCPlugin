@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{1125bc8d-c97e-4d9e-86a8-26160d8a1174}</ProjectGuid>
+    <RootNamespace>Core</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IgnoreImportLibrary>true</IgnoreImportLibrary>
+    <TargetExt>.asi</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>
+      </SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;GTASA;GTAGAME_NAME="San Andreas";GTAGAME_ABBR="SA";GTAGAME_ABBRLOW="sa";GTAGAME_PROTAGONISTNAME="CJ";GTAGAME_CITYNAME="San Andreas";PLUGIN_SGV_10US;RW;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(PLUGIN_SDK_DIR)\Plugin_SA;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\enums;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\rw;$(PLUGIN_SDK_DIR)\shared;$(PLUGIN_SDK_DIR)\shared\game;$(SolutionDir)libs\sampapi\include;$(SolutionDir)libs\minhook\include;$(ProjectDir)src;$(ProjectDir)src\hooks;$(ProjectDir)src\patches;$(ProjectDir)src\utils;$(ProjectDir)src\gta;$(ProjectDir)src\sdk;$(DXSDK_DIR)Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <StringPooling>true</StringPooling>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Full</Optimization>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <LanguageStandard_C>Default</LanguageStandard_C>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableUAC>true</EnableUAC>
+      <AdditionalLibraryDirectories>$(PLUGIN_SDK_DIR)\output\lib;$(SolutionDir)libs\sampapi\lib;$(SolutionDir)libs\minhook\lib;$(DXSDK_DIR)Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>plugin.lib;libMinHook.x86.lib;sampapi.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;CORE_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableUAC>false</EnableUAC>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libs\minhook\include\MinHook.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\AimStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Animation.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CActor.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CActorPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CAudio.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CAudioStream.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CCamera.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CChat.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CChatBubble.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CConfig.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CDeathWindow.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CEntity.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CFonts.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CGangZonePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CHelpDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CHttpClient.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CInput.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLabel.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLabelPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLicensePlate.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLocalPlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CMenu.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CMenuPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CNetGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObject.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectEdit.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectMaterialText.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Commands.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\ControllerState.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPed.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPickupPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPlayerInfo.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPlayerPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPlayerTags.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CRemotePlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CScoreboard.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CSpawnScreen.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CSrvNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CTextDraw.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CTextDrawPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CTextDrawSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CVehicle.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CVehiclePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Debug.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\DebugScript.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Exception.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\GUI.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\InputHandler.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\KeyStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\RPC.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Scripting.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Settings.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\SpecialAction.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Synchronization.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\VehicleSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\AimStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Animation.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CActor.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CActorPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CAudio.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CAudioStream.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CCamera.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CChat.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CChatBubble.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CConfig.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CDeathWindow.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CEntity.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CFont.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CFonts.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CGangZonePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CHelpDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CHttpClient.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CInput.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLabel.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLabelPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLicensePlate.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLocalPlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CMenu.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CMenuPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CNetGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObject.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectEdit.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectMaterialText.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Commands.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\ControllerState.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPed.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPickupPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPlayerInfo.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPlayerPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPlayerTags.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CRemotePlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CScoreboard.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CSpawnScreen.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CSrvNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CTextDraw.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CTextDrawPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CTextDrawSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CVehicle.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CVehiclePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\DebugScript.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Exception.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\GUI.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\InputHandler.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\KeyStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\RPCHandlers.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Scripting.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Settings.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\SpecialAction.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Synchronization.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\AimStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Animation.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CActor.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CActorPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CAudio.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CAudioStream.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CCamera.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CChat.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CChatBubble.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CConfig.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CDeathWindow.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CEntity.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CFont.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CFonts.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CGangZonePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CHelpDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CHttpClient.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CInput.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLabel.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLabelPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLicensePlate.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLocalPlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CMenu.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CMenuPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CNetGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObject.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectEdit.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectMaterialText.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Commands.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\ControllerState.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPed.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPickupPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPlayerInfo.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPlayerPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPlayerTags.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CRemotePlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CScoreboard.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CSpawnScreen.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CSrvNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CTextDraw.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CTextDrawPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CTextDrawSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CVehicle.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CVehiclePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\DebugScript.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Exception.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\GUI.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\InputHandler.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\KeyStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\RPCHandlers.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Scripting.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Settings.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\SpecialAction.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Synchronization.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\AimStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Animation.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CActor.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CActorPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CAudio.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CAudioStream.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CCamera.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CChat.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CChatBubble.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CConfig.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CCustomModels.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CCustomModelsPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDeathWindow.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDownloadedFilesPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDownloadWindow.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CEntity.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CFont.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CFonts.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CGangZonePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CHelpDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CHttpClient.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CInput.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLabel.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLabelPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLicensePlate.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLocalPlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CMenu.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CMenuPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CNetGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObject.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectEdit.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectMaterialText.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Commands.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\ControllerState.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPed.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPickupPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPlayerInfo.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPlayerPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPlayerTags.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CRemotePlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CScoreboard.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CSpawnScreen.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CSrvNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CTextDraw.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CTextDrawPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CTextDrawSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CVehicle.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CVehiclePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\DebugScript.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Exception.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\GUI.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\InputHandler.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\KeyStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\RPCHandlers.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Scripting.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Settings.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\SpecialAction.h" />
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Synchronization.h" />
+    <ClInclude Include="..\libs\sampapi\include\AimStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\Animation.h" />
+    <ClInclude Include="..\libs\sampapi\include\CActor.h" />
+    <ClInclude Include="..\libs\sampapi\include\CActorPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CAudio.h" />
+    <ClInclude Include="..\libs\sampapi\include\CAudioStream.h" />
+    <ClInclude Include="..\libs\sampapi\include\CCamera.h" />
+    <ClInclude Include="..\libs\sampapi\include\CChat.h" />
+    <ClInclude Include="..\libs\sampapi\include\CChatBubble.h" />
+    <ClInclude Include="..\libs\sampapi\include\CConfig.h" />
+    <ClInclude Include="..\libs\sampapi\include\CCustomModels.h" />
+    <ClInclude Include="..\libs\sampapi\include\CCustomModelsPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CDeathWindow.h" />
+    <ClInclude Include="..\libs\sampapi\include\CDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\CDownloadedFilesPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CDownloadWindow.h" />
+    <ClInclude Include="..\libs\sampapi\include\CEntity.h" />
+    <ClInclude Include="..\libs\sampapi\include\CFont.h" />
+    <ClInclude Include="..\libs\sampapi\include\CFonts.h" />
+    <ClInclude Include="..\libs\sampapi\include\CGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\CGangZonePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CHelpDialog.h" />
+    <ClInclude Include="..\libs\sampapi\include\CHttpClient.h" />
+    <ClInclude Include="..\libs\sampapi\include\CInput.h" />
+    <ClInclude Include="..\libs\sampapi\include\CLabel.h" />
+    <ClInclude Include="..\libs\sampapi\include\CLabelPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CLicensePlate.h" />
+    <ClInclude Include="..\libs\sampapi\include\CLocalPlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\CMatrix.h" />
+    <ClInclude Include="..\libs\sampapi\include\CMenu.h" />
+    <ClInclude Include="..\libs\sampapi\include\CMenuPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CNetGame.h" />
+    <ClInclude Include="..\libs\sampapi\include\CNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\CObject.h" />
+    <ClInclude Include="..\libs\sampapi\include\CObjectEdit.h" />
+    <ClInclude Include="..\libs\sampapi\include\CObjectMaterialText.h" />
+    <ClInclude Include="..\libs\sampapi\include\CObjectPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CObjectSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\Commands.h" />
+    <ClInclude Include="..\libs\sampapi\include\ControllerState.h" />
+    <ClInclude Include="..\libs\sampapi\include\CPed.h" />
+    <ClInclude Include="..\libs\sampapi\include\CPickupPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CPlayerInfo.h" />
+    <ClInclude Include="..\libs\sampapi\include\CPlayerPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CPlayerTags.h" />
+    <ClInclude Include="..\libs\sampapi\include\CPoint.h" />
+    <ClInclude Include="..\libs\sampapi\include\CRect.h" />
+    <ClInclude Include="..\libs\sampapi\include\CRemotePlayer.h" />
+    <ClInclude Include="..\libs\sampapi\include\CScoreboard.h" />
+    <ClInclude Include="..\libs\sampapi\include\CSpawnScreen.h" />
+    <ClInclude Include="..\libs\sampapi\include\CSrvNetStats.h" />
+    <ClInclude Include="..\libs\sampapi\include\CTextDraw.h" />
+    <ClInclude Include="..\libs\sampapi\include\CTextDrawPool.h" />
+    <ClInclude Include="..\libs\sampapi\include\CTextDrawSelection.h" />
+    <ClInclude Include="..\libs\sampapi\include\CVector.h" />
+    <ClInclude Include="..\libs\sampapi\include\CVehicle.h" />
+    <ClInclude Include="..\libs\sampapi\include\CVehiclePool.h" />
+    <ClInclude Include="..\libs\sampapi\include\Debug.h" />
+    <ClInclude Include="..\libs\sampapi\include\DebugScript.h" />
+    <ClInclude Include="..\libs\sampapi\include\Exception.h" />
+    <ClInclude Include="..\libs\sampapi\include\GUI.h" />
+    <ClInclude Include="..\libs\sampapi\include\InputHandler.h" />
+    <ClInclude Include="..\libs\sampapi\include\KeyStuff.h" />
+    <ClInclude Include="..\libs\sampapi\include\RPC.h" />
+    <ClInclude Include="..\libs\sampapi\include\RPCHandlers.h" />
+    <ClInclude Include="..\libs\sampapi\include\sampapi.h" />
+    <ClInclude Include="..\libs\sampapi\include\Scripting.h" />
+    <ClInclude Include="..\libs\sampapi\include\Settings.h" />
+    <ClInclude Include="..\libs\sampapi\include\SpecialAction.h" />
+    <ClInclude Include="..\libs\sampapi\include\Synchronization.h" />
+    <ClInclude Include="..\libs\sampapi\include\VehicleSelection.h" />
+    <ClInclude Include="src\gta\gta.hpp" />
+    <ClInclude Include="src\hooks\rpc_security.hpp" />
+    <ClInclude Include="src\hooks\samp_events.hpp" />
+    <ClInclude Include="src\patches\manager.hpp" />
+    <ClInclude Include="src\patches\security.hpp" />
+    <ClInclude Include="src\patches\splash_d3d.hpp" />
+    <ClInclude Include="src\sdk\sdk.hpp" />
+    <ClInclude Include="src\utils\chat.hpp" />
+    <ClInclude Include="src\utils\memory.hpp" />
+    <ClInclude Include="src\utils\samp_reader.hpp" />
+    <ClInclude Include="src\utils\window.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\hooks\rpc_security.cpp" />
+    <ClCompile Include="src\hooks\samp_events.cpp" />
+    <ClCompile Include="src\patches\manager.cpp" />
+    <ClCompile Include="src\patches\security.cpp" />
+    <ClCompile Include="src\patches\splash_d3d.cpp" />
+    <ClCompile Include="src\samp\samp.hpp" />
+    <ClCompile Include="src\utils\chat.cpp" />
+    <ClCompile Include="src\utils\window.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

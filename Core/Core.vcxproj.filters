@@ -1,0 +1,1056 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Core\hooks">
+      <UniqueIdentifier>{f5cb9b0e-9ddc-4352-98a2-296af70de166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\patches">
+      <UniqueIdentifier>{d2c259c1-72be-4002-a746-47aca787385f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\utils">
+      <UniqueIdentifier>{7eda2c4c-5425-4ab1-a4b6-e2835612cf09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\sampapi">
+      <UniqueIdentifier>{f7c15c39-0094-4cc6-b0bd-56a2093c65df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\minhook">
+      <UniqueIdentifier>{91723f49-af6d-4dca-be19-c776b89201fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\sampapi\0.3.7-R1">
+      <UniqueIdentifier>{cb3d5762-a511-486e-883b-0f9ef32deb37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\sampapi\0.3.7-R3-1">
+      <UniqueIdentifier>{380a4fd6-537a-4a80-b7a7-b7cd04c8a34b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\sampapi\0.3.7-R5-1">
+      <UniqueIdentifier>{5fab086d-f8a6-4ea8-86f4-eb4d7c50e966}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\sampapi\0.3DL">
+      <UniqueIdentifier>{0db8e2f2-e599-4c6e-a3d0-8811dffc9303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\samp">
+      <UniqueIdentifier>{62a5b319-6b57-4311-bd23-fe85ba489741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\gta">
+      <UniqueIdentifier>{05675d9b-4d34-47e2-a7f1-2a7856d2d833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\sdk">
+      <UniqueIdentifier>{8526de47-a71c-4780-b9d7-4612f322498a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\libs\minhook\include\MinHook.h">
+      <Filter>Файлы заголовков\minhook</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\AimStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Animation.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CActor.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CActorPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CAudio.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CAudioStream.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CCamera.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CChat.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CChatBubble.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CConfig.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CDeathWindow.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CEntity.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CFonts.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CGangZonePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CHelpDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CHttpClient.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CInput.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLabel.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLabelPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLicensePlate.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CLocalPlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CMenu.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CMenuPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CNetGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObject.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectEdit.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectMaterialText.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CObjectSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Commands.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\ControllerState.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPed.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPickupPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPlayerInfo.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPlayerPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CPlayerTags.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CRemotePlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CScoreboard.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CSpawnScreen.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CSrvNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CTextDraw.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CTextDrawPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CTextDrawSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CVehicle.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\CVehiclePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Debug.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\DebugScript.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Exception.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\GUI.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\InputHandler.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\KeyStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\RPC.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Scripting.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Settings.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\SpecialAction.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\Synchronization.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R1\VehicleSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\AimStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Animation.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CActor.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CActorPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CAudio.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CAudioStream.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CCamera.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CChat.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CChatBubble.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CConfig.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CDeathWindow.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CEntity.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CFont.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CFonts.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CGangZonePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CHelpDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CHttpClient.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CInput.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLabel.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLabelPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLicensePlate.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CLocalPlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CMenu.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CMenuPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CNetGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObject.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectEdit.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectMaterialText.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CObjectSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Commands.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\ControllerState.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPed.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPickupPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPlayerInfo.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPlayerPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CPlayerTags.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CRemotePlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CScoreboard.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CSpawnScreen.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CSrvNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CTextDraw.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CTextDrawPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CTextDrawSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CVehicle.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\CVehiclePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\DebugScript.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Exception.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\GUI.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\InputHandler.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\KeyStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\RPCHandlers.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Scripting.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Settings.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\SpecialAction.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R3-1\Synchronization.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R3-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\AimStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Animation.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CActor.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CActorPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CAudio.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CAudioStream.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CCamera.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CChat.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CChatBubble.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CConfig.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CDeathWindow.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CEntity.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CFont.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CFonts.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CGangZonePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CHelpDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CHttpClient.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CInput.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLabel.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLabelPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLicensePlate.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CLocalPlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CMenu.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CMenuPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CNetGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObject.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectEdit.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectMaterialText.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CObjectSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Commands.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\ControllerState.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPed.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPickupPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPlayerInfo.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPlayerPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CPlayerTags.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CRemotePlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CScoreboard.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CSpawnScreen.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CSrvNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CTextDraw.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CTextDrawPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CTextDrawSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CVehicle.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\CVehiclePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\DebugScript.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Exception.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\GUI.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\InputHandler.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\KeyStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\RPCHandlers.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Scripting.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Settings.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\SpecialAction.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.7-R5-1\Synchronization.h">
+      <Filter>Файлы заголовков\sampapi\0.3.7-R5-1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\AimStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Animation.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CActor.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CActorPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CAudio.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CAudioStream.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CCamera.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CChat.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CChatBubble.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CConfig.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CCustomModels.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CCustomModelsPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDeathWindow.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDownloadedFilesPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CDownloadWindow.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CEntity.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CFont.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CFonts.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CGangZonePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CHelpDialog.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CHttpClient.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CInput.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLabel.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLabelPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLicensePlate.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CLocalPlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CMenu.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CMenuPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CNetGame.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObject.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectEdit.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectMaterialText.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CObjectSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Commands.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\ControllerState.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPed.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPickupPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPlayerInfo.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPlayerPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CPlayerTags.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CRemotePlayer.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CScoreboard.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CSpawnScreen.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CSrvNetStats.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CTextDraw.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CTextDrawPool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CTextDrawSelection.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CVehicle.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\CVehiclePool.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\DebugScript.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Exception.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\GUI.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\InputHandler.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\KeyStuff.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\RPCHandlers.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Scripting.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Settings.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\SpecialAction.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\0.3.DL-1\Synchronization.h">
+      <Filter>Файлы заголовков\sampapi\0.3DL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\AimStuff.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\Animation.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CActor.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CActorPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CAudio.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CAudioStream.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CCamera.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CChat.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CChatBubble.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CConfig.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CCustomModels.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CCustomModelsPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CDeathWindow.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CDialog.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CDownloadedFilesPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CDownloadWindow.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CEntity.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CFont.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CFonts.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CGame.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CGangZonePool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CHelpDialog.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CHttpClient.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CInput.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CLabel.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CLabelPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CLicensePlate.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CLocalPlayer.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CMatrix.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CMenu.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CMenuPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CNetGame.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CNetStats.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CObject.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CObjectEdit.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CObjectMaterialText.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CObjectPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CObjectSelection.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\Commands.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\ControllerState.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CPed.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CPickupPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CPlayerInfo.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CPlayerPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CPlayerTags.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CPoint.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CRect.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CRemotePlayer.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CScoreboard.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CSpawnScreen.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CSrvNetStats.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CTextDraw.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CTextDrawPool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CTextDrawSelection.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CVector.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CVehicle.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\CVehiclePool.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\Debug.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\DebugScript.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\Exception.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\GUI.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\InputHandler.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\KeyStuff.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\RPC.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\RPCHandlers.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\sampapi.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\Scripting.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\Settings.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\SpecialAction.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\Synchronization.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\sampapi\include\VehicleSelection.h">
+      <Filter>Файлы заголовков\sampapi</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hooks\samp_events.hpp">
+      <Filter>Core\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gta\gta.hpp">
+      <Filter>Core\gta</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\sdk.hpp">
+      <Filter>Core\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\memory.hpp">
+      <Filter>Core\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patches\manager.hpp">
+      <Filter>Core\patches</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\window.hpp">
+      <Filter>Core\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\chat.hpp">
+      <Filter>Core\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patches\security.hpp">
+      <Filter>Core\patches</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hooks\rpc_security.hpp">
+      <Filter>Core\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\samp_reader.hpp">
+      <Filter>Core\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patches\splash_d3d.hpp">
+      <Filter>Core\patches</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\samp\samp.hpp">
+      <Filter>Core\samp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\patches\manager.cpp">
+      <Filter>Core\patches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hooks\samp_events.cpp">
+      <Filter>Core\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\window.cpp">
+      <Filter>Core\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\chat.cpp">
+      <Filter>Core\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\patches\security.cpp">
+      <Filter>Core\patches</Filter>
+    </ClCompile>
+    <ClCompile Include="src\hooks\rpc_security.cpp">
+      <Filter>Core\hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="src\patches\splash_d3d.cpp">
+      <Filter>Core\patches</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
