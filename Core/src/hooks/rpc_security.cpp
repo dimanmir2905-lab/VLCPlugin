@@ -26,6 +26,16 @@ namespace RakNet {
 typedef RakNet::Packet* (__thiscall* Receive_t)(void* pRakClient, uint32_t timeout);
 static Receive_t oReceive = nullptr;
 
+// ==========================================
+// ТРЮК для безопасного вызова __thiscall из __fastcall
+// ==========================================
+struct RakClientWrapper {
+    RakNet::Packet* Receive(uint32_t timeout) {
+        // Компилятор автоматически поместит 'this' в регистр ECX, как и требует __thiscall
+        return oReceive(this, timeout);
+    }
+};
+
 namespace {
     constexpr size_t MAX_MENU_ITEMS = 12;
     constexpr size_t MAX_MENU_LINE = 32;
@@ -40,8 +50,8 @@ namespace {
 // Хук на Receive (__fastcall для MinHook)
 // ==========================================
 RakNet::Packet* __fastcall hReceive(void* pRakClient, void* edx, uint32_t timeout) {
-    // Вызываем оригинальную функцию (__thiscall: this в ecx, timeout в стеке)
-    RakNet::Packet* packet = oReceive(pRakClient, timeout);
+    // 1. БЕЗОПАСНЫЙ вызов оригинальной функции
+    RakNet::Packet* packet = reinterpret_cast<RakClientWrapper*>(pRakClient)->Receive(timeout);
 
     if (packet && packet->length > 1 && packet->data && packet->data[0] == 199) {
         Utils::SampReader reader(packet->data + 1, packet->length - 1);
@@ -132,8 +142,13 @@ RakNet::Packet* __fastcall hReceive(void* pRakClient, void* edx, uint32_t timeou
                 }
             }
 
+            // 2. ПРАВИЛЬНОЕ УДАЛЕНИЕ ПАКЕТА вместо порчи данных
             if (dropPacket) {
-                packet->data[1] = 255;
+                if (packet->deleteData) {
+                    delete[] packet->data;
+                }
+                delete packet;
+                return nullptr; // Возвращаем nullptr, чтобы SA-MP игнорировал этот пакет
             }
         }
     }
@@ -146,16 +161,25 @@ RakNet::Packet* __fastcall hReceive(void* pRakClient, void* edx, uint32_t timeou
 // ==========================================
 namespace Hooks::RPCSecurity {
 
+    // Вспомогательная функция для определения версии (дублируем или выносим в общий хедер)
+    static bool IsSampR1() {
+        uintptr_t sampBase = reinterpret_cast<uintptr_t>(GetModuleHandleA("samp.dll"));
+        if (!sampBase) return false;
+        return (*reinterpret_cast<unsigned char*>(sampBase + 0x129) == 0xF4);
+    }
+
     void Initialize() {
         uintptr_t sampBase = reinterpret_cast<uintptr_t>(GetModuleHandleA("samp.dll"));
         if (!sampBase) return;
 
-        void** pRakClientPtr = reinterpret_cast<void**>(sampBase + 0x26E8CC);
+        // ИСПРАВЛЕНО: 0x26E8CC для R1, 0x26E8DC для R3
+        DWORD rakClientOffset = IsSampR1() ? 0x26E8CC : 0x26E8DC;
+
+        void** pRakClientPtr = reinterpret_cast<void**>(sampBase + rakClientOffset);
         if (!pRakClientPtr || !*pRakClientPtr) return;
 
         void** vtable = *reinterpret_cast<void***>(*pRakClientPtr);
 
-        // Приводим vtable[8] к void* для MinHook
         MH_CreateHook(
             reinterpret_cast<void*>(vtable[8]),
             reinterpret_cast<void*>(hReceive),

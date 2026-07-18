@@ -103,7 +103,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(PLUGIN_SDK_DIR)\Plugin_SA;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\enums;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\rw;$(PLUGIN_SDK_DIR)\shared;$(PLUGIN_SDK_DIR)\shared\game;$(SolutionDir)libs\sampapi\include;$(SolutionDir)libs\minhook\include;$(ProjectDir)src;$(ProjectDir)src\hooks;$(ProjectDir)src\patches;$(ProjectDir)src\utils;$(ProjectDir)src\gta;$(ProjectDir)src\sdk;$(DXSDK_DIR)Include;$(SolutionDir)libs\rakhook\include;$(SolutionDir)libs\rakhook\include\RakHook;$(SolutionDir)libs\rakhook\include\RakNet;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(PLUGIN_SDK_DIR)\Plugin_SA;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\enums;$(PLUGIN_SDK_DIR)\Plugin_SA\game_sa\rw;$(PLUGIN_SDK_DIR)\shared;$(PLUGIN_SDK_DIR)\shared\game;$(SolutionDir)libs\sampapi\include;$(SolutionDir)libs\minhook\include;$(ProjectDir)src;$(ProjectDir)src\hooks;$(ProjectDir)src\patches;$(ProjectDir)src\utils;$(ProjectDir)src\gta;$(ProjectDir)src\sdk;$(DXSDK_DIR)Include;$(SolutionDir)libs\rakhook\include;$(SolutionDir)libs\rakhook\include\RakHook;$(SolutionDir)libs\rakhook\include\RakNet;$(SolutionDir)libs\imgui;$(SolutionDir)libs\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StringPooling>true</StringPooling>
       <DebugInformationFormat>None</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -153,6 +153,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\libs\imgui\backends\imgui_impl_dx9.h" />
+    <ClInclude Include="..\libs\imgui\backends\imgui_impl_win32.h" />
+    <ClInclude Include="..\libs\imgui\imconfig.h" />
+    <ClInclude Include="..\libs\imgui\imgui.h" />
+    <ClInclude Include="..\libs\imgui\imgui_internal.h" />
+    <ClInclude Include="..\libs\imgui\imstb_rectpack.h" />
+    <ClInclude Include="..\libs\imgui\imstb_textedit.h" />
+    <ClInclude Include="..\libs\imgui\imstb_truetype.h" />
     <ClInclude Include="..\libs\minhook\include\MinHook.h" />
     <ClInclude Include="..\libs\rakhook\include\RakHook\detail.hpp" />
     <ClInclude Include="..\libs\rakhook\include\RakHook\hooked_rakclient_interface.hpp" />
@@ -491,13 +499,23 @@
     <ClInclude Include="src\patches\manager.hpp" />
     <ClInclude Include="src\patches\security.hpp" />
     <ClInclude Include="src\patches\splash_d3d.hpp" />
+    <ClInclude Include="src\samp\samp_api.hpp" />
     <ClInclude Include="src\sdk\sdk.hpp" />
     <ClInclude Include="src\utils\chat.hpp" />
+    <ClInclude Include="src\utils\crash_handler.hpp" />
+    <ClInclude Include="src\utils\imgui_menu.hpp" />
     <ClInclude Include="src\utils\memory.hpp" />
     <ClInclude Include="src\utils\samp_reader.hpp" />
     <ClInclude Include="src\utils\window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\libs\imgui\backends\imgui_impl_dx9.cpp" />
+    <ClCompile Include="..\libs\imgui\backends\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\libs\imgui\imgui.cpp" />
+    <ClCompile Include="..\libs\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\libs\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\libs\imgui\imgui_tables.cpp" />
+    <ClCompile Include="..\libs\imgui\imgui_widgets.cpp" />
     <ClCompile Include="..\libs\rakhook\src\RakHook\offsets.cpp" />
     <ClCompile Include="..\libs\rakhook\src\RakHook\rakhook.cpp" />
     <ClCompile Include="..\libs\rakhook\src\RakHook\samp.cpp" />
@@ -511,8 +529,9 @@
     <ClCompile Include="src\patches\manager.cpp" />
     <ClCompile Include="src\patches\security.cpp" />
     <ClCompile Include="src\patches\splash_d3d.cpp" />
-    <ClCompile Include="src\samp\samp_api.hpp" />
     <ClCompile Include="src\utils\chat.cpp" />
+    <ClCompile Include="src\utils\crash_handler.cpp" />
+    <ClCompile Include="src\utils\imgui_menu.cpp" />
     <ClCompile Include="src\utils\window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

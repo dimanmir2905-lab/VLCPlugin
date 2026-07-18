@@ -6,9 +6,20 @@
 
 #include "MinHook.h"
 #include "patches/splash_d3d.hpp"
+#include "utils/window.hpp"
 
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
+
+// === ИНКЛУДЫ IMGUI ===
+#include <imgui.h>
+#include <imgui_impl_dx9.h>
+#include <imgui_impl_win32.h>
+#include "../utils/imgui_menu.hpp"
+
+// Глобальные переменные для состояния ImGui
+static bool g_imguiInitialized = false;
+static HWND g_gameHwnd = nullptr;
 
 namespace Patches::SplashD3D {
     namespace {
@@ -568,19 +579,81 @@ namespace Patches::SplashD3D {
             if (stateBlock) { stateBlock->Apply(); stateBlock->Release(); }
         }
 
+        void InitializeImGui(IDirect3DDevice9* device, HWND hwnd) {
+            if (g_imguiInitialized) return;
+            g_gameHwnd = hwnd;
+
+            IMGUI_CHECKVERSION();
+            ImGui::CreateContext();
+            ImGuiIO& io = ImGui::GetIO();
+            io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Включить управление с клавиатуры
+
+            // Загрузка шрифта с поддержкой кириллицы (Arial есть в любой Windows)
+            ImFontConfig font_cfg;
+            font_cfg.OversampleH = 1;
+            font_cfg.OversampleV = 1;
+            font_cfg.PixelSnapH = true;
+            io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\arial.ttf", 16.0f, &font_cfg, io.Fonts->GetGlyphRangesCyrillic());
+
+            ImGui::StyleColorsDark();
+
+            // Инициализация бэкендов
+            ImGui_ImplWin32_Init(g_gameHwnd);
+            ImGui_ImplDX9_Init(device);
+
+            g_imguiInitialized = true;
+        }
+
         HRESULT WINAPI HookedPresent(IDirect3DDevice9* device, const RECT* srcRect, const RECT* dstRect, HWND dstWindowOverride, const RGNDATA* dirtyRegion) {
+            // 1. Отрисовка сплэш-скрина
             DrawOverlaySafe(device);
+
+            // 2. Ленивая инициализация ImGui
+            static bool menuInitialized = false;
+            if (!menuInitialized) {
+                // Берем HWND из нашего утилитарного модуля (гарантированно правильное окно)
+                HWND targetHwnd = Utils::GetGameHwnd();
+
+                // Резервный вариант на самый крайний случай
+                if (!targetHwnd) targetHwnd = GetActiveWindow();
+
+                if (targetHwnd && device) {
+                    ImGuiMenu::Initialize(targetHwnd, device);
+                    menuInitialized = true;
+                    OutputDebugStringA("[VLC] ImGui инициализирован на целевом окне\n");
+                }
+            }
+
+            // 3. Вызов рендера
+            if (menuInitialized) {
+                ImGuiMenu::Render(device);
+            }
+
             return g_originalPresent(device, srcRect, dstRect, dstWindowOverride, dirtyRegion);
         }
 
         HRESULT WINAPI HookedReset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* pp) {
-            g_barAnim = 0.0f; g_hideStarted = false; g_hideStartTick = 0; g_overlayAlpha = 1.0f;
-            g_connectionOverlayActive = false; g_connectionCompleted = false; g_finishMode = ConnectionFinishMode::None; g_finishTick = 0;
-            strcpy_s(g_connectionStatus, "Подключение к серверу...");
-            g_font.Release(); g_fontInitAttempted = false;
-            if (g_backgroundTex) { g_backgroundTex->Release(); g_backgroundTex = nullptr; }
+            // 1. Сбрасываем только ресурсы ImGui и D3D
+            ImGuiMenu::InvalidateDeviceObjects();
+
+            g_font.Release();
+            g_fontInitAttempted = false;
+
+            if (g_backgroundTex) {
+                g_backgroundTex->Release();
+                g_backgroundTex = nullptr;
+            }
             g_bgLoadAttempted = false;
-            return g_originalReset(device, pp);
+
+            // 2. Вызываем оригинальный Reset
+            HRESULT hr = g_originalReset(device, pp);
+
+            // 3. Восстанавливаем ресурсы после успешного Reset
+            if (SUCCEEDED(hr)) {
+                ImGuiMenu::CreateDeviceObjects();
+            }
+
+            return hr;
         }
 
         bool InstallPresentHook() {
@@ -660,6 +733,9 @@ namespace Patches::SplashD3D {
     }
 
     void Shutdown() {
+        ImGuiMenu::Shutdown();
+
+        // Твой оригинальный код очистки
         g_font.Release();
         if (g_backgroundTex) { g_backgroundTex->Release(); g_backgroundTex = nullptr; }
         MH_DisableHook(MH_ALL_HOOKS);

@@ -1,19 +1,29 @@
 #include "patches/security.hpp"
-#include "hooks/rpc_security.hpp" // Подключаем RPC защиту
+#include "hooks/rpc_security.hpp"
 #include "utils/chat.hpp"
 #include <fstream>
 
 namespace Patches::Security {
 
+    // Вспомогательная функция для определения версии SAMP (R1 или R3)
+    static bool IsSampR1() {
+        uintptr_t sampBase = reinterpret_cast<uintptr_t>(GetModuleHandleA("samp.dll"));
+        if (!sampBase) return false;
+        return (*reinterpret_cast<unsigned char*>(sampBase + 0x129) == 0xF4);
+    }
+
     // ==========================================
-    // 1. Fix SetSpawnInfo Buffer Overflow
+    // 1. Fix SetSpawnInfo Buffer Overflow (ИСПРАВЛЕНО: поддержка R1 и R3)
     // ==========================================
     void FixSetSpawnInfoBufferOverflow() {
         uintptr_t sampBase = reinterpret_cast<uintptr_t>(GetModuleHandleA("samp.dll"));
         if (!sampBase) return;
 
-        // Адрес 0x460773, заменяем 7 байт на NOP (0x90)
-        Memory::Fill(sampBase + 0x460773, 0x90, 7);
+        // Адрес для R1: 0x460773, Адрес для R3: 0x4607D3
+        DWORD patchOffset = IsSampR1() ? 0x460773 : 0x4607D3;
+
+        // Заменяем 7 байт на NOP (0x90)
+        Memory::Fill(sampBase + patchOffset, 0x90, 7);
     }
 
     // ==========================================
@@ -40,9 +50,10 @@ namespace Patches::Security {
     }
 
     // ==========================================
-    // 3. Fix Malicious TXD Loading
+    // 3. Fix Malicious TXD Loading (ИСПРАВЛЕНО: Calling Convention)
     // ==========================================
-    typedef int(__cdecl* LoadTxdFile_t)(uint32_t txdIndex, char* fileName);
+    // Оригинальная функция является __thiscall, поэтому хук должен быть __fastcall
+    typedef int(__thiscall* LoadTxdFile_t)(void* this_ptr, uint32_t txdIndex, char* fileName);
     static LoadTxdFile_t oLoadTxdFile = nullptr;
 
     struct ChunkHeader {
@@ -51,14 +62,15 @@ namespace Patches::Security {
         uint32_t version;
     };
 
-    int __cdecl hLoadTxdFile(uint32_t txdIndex, char* fileName) {
+    int __fastcall hLoadTxdFile(void* this_ptr, void* edx, uint32_t txdIndex, char* fileName) {
         if (fileName && strlen(fileName) > 0) {
             // Блокируем очевидные попытки выхода за пределы директории
             if (strstr(fileName, "..") != nullptr || strstr(fileName, ":\\") != nullptr) {
                 return 0;
             }
 
-            // Проверяем заголовок файла
+            // Проверяем заголовок файла (ВНИМАНИЕ: это может вызывать микро-лаги при загрузке, 
+            // но безопасно предотвращает загрузку битых TXD)
             std::ifstream file(fileName, std::ios::binary);
             if (file.is_open()) {
                 ChunkHeader outer{}, first{};
@@ -69,13 +81,15 @@ namespace Patches::Security {
                     first.type == 0x01) { // kRwStruct
 
                     file.close();
-                    return oLoadTxdFile(txdIndex, fileName);
+                    // ВЫЗЫВАЕМ ОРИГИНАЛ С ПРАВИЛЬНЫМ this_ptr!
+                    return oLoadTxdFile(this_ptr, txdIndex, fileName);
                 }
                 file.close();
                 return 0; // Блокируем загрузку невалидного TXD
             }
         }
-        return oLoadTxdFile(txdIndex, fileName);
+        // Если файл не найден на диске (например, он в .img архиве), передаем управление оригиналу
+        return oLoadTxdFile(this_ptr, txdIndex, fileName);
     }
 
     void InstallTxdHook() {
@@ -99,8 +113,6 @@ namespace Patches::Security {
 
         // Инициализируем защиту RPC
         Hooks::RPCSecurity::Initialize();
-
-        // Utils::PrintChat(0x00FF00FF, "[Security] RCE/Crash фиксы применены (Silent Mode)"); // Можно раскомментировать для отладки
     }
 
     void ShutdownSecurityFixes() {

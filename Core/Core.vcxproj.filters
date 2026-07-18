@@ -40,15 +40,6 @@
     <Filter Include="Файлы заголовков\sampapi\0.3DL">
       <UniqueIdentifier>{0db8e2f2-e599-4c6e-a3d0-8811dffc9303}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\samp">
-      <UniqueIdentifier>{62a5b319-6b57-4311-bd23-fe85ba489741}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\gta">
-      <UniqueIdentifier>{05675d9b-4d34-47e2-a7f1-2a7856d2d833}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\sdk">
-      <UniqueIdentifier>{8526de47-a71c-4780-b9d7-4612f322498a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\rakhook">
       <UniqueIdentifier>{395189d4-1921-46c3-ab4e-355f45c19b85}</UniqueIdentifier>
     </Filter>
@@ -61,14 +52,47 @@
     <Filter Include="Файлы заголовков\rakhook\include\RakNet">
       <UniqueIdentifier>{e151a97e-6bae-4bb9-84a7-5a548111616e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\rakhook\src">
+    <Filter Include="Файлы заголовков\gta">
+      <UniqueIdentifier>{05675d9b-4d34-47e2-a7f1-2a7856d2d833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\samp">
+      <UniqueIdentifier>{62a5b319-6b57-4311-bd23-fe85ba489741}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\sdk">
+      <UniqueIdentifier>{8526de47-a71c-4780-b9d7-4612f322498a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\rakhook">
+      <UniqueIdentifier>{be502457-e215-4a6e-98bd-ceb73975ef6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\rakhook\src">
       <UniqueIdentifier>{17b795b8-0da7-44da-9cbb-2d8aebc22086}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\rakhook\src\RakHook">
+    <Filter Include="Core\rakhook\src\RakHook">
       <UniqueIdentifier>{38512215-3202-4382-bcf3-787db094ecaa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\rakhook\src\RakNet">
+    <Filter Include="Core\rakhook\src\RakNet">
       <UniqueIdentifier>{7fae5bf0-a288-447b-a55c-a44d46250e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\patches">
+      <UniqueIdentifier>{43a24db5-5ac4-427f-9770-a238290d17e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\utils">
+      <UniqueIdentifier>{ccdff421-2942-4823-8586-b5b826474154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\imgui">
+      <UniqueIdentifier>{ab6306d2-272f-4bcc-b084-307f87647088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\imgui">
+      <UniqueIdentifier>{543d3d7a-bfcb-4a59-a67b-d7df801ce8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\imgui\backends">
+      <UniqueIdentifier>{59537583-550c-4d33-a1fa-1d4635366e47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\imgui\backends">
+      <UniqueIdentifier>{d33409e9-0c6c-4a16-b445-e06825ca0f18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\hooks">
+      <UniqueIdentifier>{9596853d-39a0-4297-9d3e-da99620b14eb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1011,39 +1035,6 @@
     <ClInclude Include="..\libs\sampapi\include\VehicleSelection.h">
       <Filter>Файлы заголовков\sampapi</Filter>
     </ClInclude>
-    <ClInclude Include="src\hooks\samp_events.hpp">
-      <Filter>Core\hooks</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gta\gta.hpp">
-      <Filter>Core\gta</Filter>
-    </ClInclude>
-    <ClInclude Include="src\sdk\sdk.hpp">
-      <Filter>Core\sdk</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\memory.hpp">
-      <Filter>Core\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\patches\manager.hpp">
-      <Filter>Core\patches</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\window.hpp">
-      <Filter>Core\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\chat.hpp">
-      <Filter>Core\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\patches\security.hpp">
-      <Filter>Core\patches</Filter>
-    </ClInclude>
-    <ClInclude Include="src\hooks\rpc_security.hpp">
-      <Filter>Core\hooks</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\samp_reader.hpp">
-      <Filter>Core\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\patches\splash_d3d.hpp">
-      <Filter>Core\patches</Filter>
-    </ClInclude>
     <ClInclude Include="..\libs\rakhook\include\RakHook\detail.hpp">
       <Filter>Файлы заголовков\rakhook\include\RakHook</Filter>
     </ClInclude>
@@ -1101,13 +1092,76 @@
     <ClInclude Include="..\libs\rakhook\include\RakNet\StringCompressor.h">
       <Filter>Файлы заголовков\rakhook\include\RakNet</Filter>
     </ClInclude>
+    <ClInclude Include="src\samp\samp_api.hpp">
+      <Filter>Файлы заголовков\samp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gta\gta.hpp">
+      <Filter>Файлы заголовков\gta</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sdk\sdk.hpp">
+      <Filter>Файлы заголовков\sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patches\manager.hpp">
+      <Filter>Файлы заголовков\patches</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patches\security.hpp">
+      <Filter>Файлы заголовков\patches</Filter>
+    </ClInclude>
+    <ClInclude Include="src\patches\splash_d3d.hpp">
+      <Filter>Файлы заголовков\patches</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\chat.hpp">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\memory.hpp">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\samp_reader.hpp">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\window.hpp">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imconfig.h">
+      <Filter>Файлы заголовков\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imgui.h">
+      <Filter>Файлы заголовков\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imgui_internal.h">
+      <Filter>Файлы заголовков\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imstb_rectpack.h">
+      <Filter>Файлы заголовков\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imstb_textedit.h">
+      <Filter>Файлы заголовков\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\imstb_truetype.h">
+      <Filter>Файлы заголовков\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\backends\imgui_impl_dx9.h">
+      <Filter>Файлы заголовков\imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\imgui\backends\imgui_impl_win32.h">
+      <Filter>Файлы заголовков\imgui\backends</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\imgui_menu.hpp">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\crash_handler.hpp">
+      <Filter>Файлы заголовков\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hooks\rpc_security.hpp">
+      <Filter>Файлы заголовков\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\hooks\samp_events.hpp">
+      <Filter>Файлы заголовков\hooks</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\samp\samp_api.hpp">
-      <Filter>Core\samp</Filter>
     </ClCompile>
     <ClCompile Include="src\patches\manager.cpp">
       <Filter>Core\patches</Filter>
@@ -1131,25 +1185,52 @@
       <Filter>Core\patches</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\rakhook\src\RakHook\offsets.cpp">
-      <Filter>Файлы заголовков\rakhook\src\RakHook</Filter>
+      <Filter>Core\rakhook\src\RakHook</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\rakhook\src\RakHook\rakhook.cpp">
-      <Filter>Файлы заголовков\rakhook\src\RakHook</Filter>
+      <Filter>Core\rakhook\src\RakHook</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\rakhook\src\RakHook\samp.cpp">
-      <Filter>Файлы заголовков\rakhook\src\RakHook</Filter>
+      <Filter>Core\rakhook\src\RakHook</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\rakhook\src\RakNet\BitStream.cpp">
-      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
+      <Filter>Core\rakhook\src\RakNet</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\rakhook\src\RakNet\DS_HuffmanEncodingTree.cpp">
-      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
+      <Filter>Core\rakhook\src\RakNet</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\rakhook\src\RakNet\PluginInterface.cpp">
-      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
+      <Filter>Core\rakhook\src\RakNet</Filter>
     </ClCompile>
     <ClCompile Include="..\libs\rakhook\src\RakNet\StringCompressor.cpp">
-      <Filter>Файлы заголовков\rakhook\src\RakNet</Filter>
+      <Filter>Core\rakhook\src\RakNet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_draw.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_tables.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_widgets.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\backends\imgui_impl_dx9.cpp">
+      <Filter>Core\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\backends\imgui_impl_win32.cpp">
+      <Filter>Core\imgui\backends</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\imgui\imgui_demo.cpp">
+      <Filter>Core\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\imgui_menu.cpp">
+      <Filter>Core\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\crash_handler.cpp">
+      <Filter>Core\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
