@@ -1,9 +1,9 @@
-#pragma once
+п»ї#pragma once
 #include <cstdint>
 #include <cstring>
 
 namespace Utils {
-    // Простой и безопасный читатель байтов из пакета SA-MP
+    // РџСЂРѕСЃС‚РѕР№ Рё Р±РµР·РѕРїР°СЃРЅС‹Р№ С‡РёС‚Р°С‚РµР»СЊ Р±Р°Р№С‚РѕРІ РёР· РїР°РєРµС‚Р° SA-MP
     class SampReader {
     private:
         const uint8_t* data;
@@ -39,17 +39,17 @@ namespace Utils {
             return true;
         }
 
-        // Пропустить N байт
+        // РџСЂРѕРїСѓСЃС‚РёС‚СЊ N Р±Р°Р№С‚
         void Ignore(size_t bytes) {
             if (CanRead(bytes)) {
                 offset += bytes;
             }
             else {
-                offset = length; // Защита от выхода за границы
+                offset = length; // Р—Р°С‰РёС‚Р° РѕС‚ РІС‹С…РѕРґР° Р·Р° РіСЂР°РЅРёС†С‹
             }
         }
 
-        // Получить оставшуюся длину пакета
+        // РџРѕР»СѓС‡РёС‚СЊ РѕСЃС‚Р°РІС€СѓСЋСЃСЏ РґР»РёРЅСѓ РїР°РєРµС‚Р°
         size_t Remaining() const {
             return length - offset;
         }

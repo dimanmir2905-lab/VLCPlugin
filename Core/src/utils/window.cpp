@@ -1,8 +1,8 @@
-#include "utils/window.hpp"
+п»ї#include "utils/window.hpp"
 #include <string>
 
 namespace Utils {
-    // Статическая переменная для хранения найденного HWND
+    // РЎС‚Р°С‚РёС‡РµСЃРєР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РЅР°Р№РґРµРЅРЅРѕРіРѕ HWND
     static HWND g_gameHwnd = nullptr;
 
     HWND GetGameHwnd() {
@@ -12,7 +12,7 @@ namespace Utils {
     void SetCustomWindow(const char* title, const char* iconRelativePath) {
         HWND hwnd = nullptr;
 
-        // 1. Пробуем найти окно по наиболее частым названиям заголовка
+        // 1. РџСЂРѕР±СѓРµРј РЅР°Р№С‚Рё РѕРєРЅРѕ РїРѕ РЅР°РёР±РѕР»РµРµ С‡Р°СЃС‚С‹Рј РЅР°Р·РІР°РЅРёСЏРј Р·Р°РіРѕР»РѕРІРєР°
         const char* possibleTitles[] = {
             "GTA:SA:MP",
             "GTA: San Andreas",
@@ -24,7 +24,7 @@ namespace Utils {
             if (hwnd) break;
         }
 
-        // 2. Если не нашли по заголовку, пробуем найти по классу окна
+        // 2. Р•СЃР»Рё РЅРµ РЅР°С€Р»Рё РїРѕ Р·Р°РіРѕР»РѕРІРєСѓ, РїСЂРѕР±СѓРµРј РЅР°Р№С‚Рё РїРѕ РєР»Р°СЃСЃСѓ РѕРєРЅР°
         if (!hwnd) {
             hwnd = FindWindowA("GTA:SA:MP", nullptr);
         }
@@ -32,14 +32,14 @@ namespace Utils {
             hwnd = FindWindowA("GTA:SA", nullptr);
         }
 
-        // Если окно найдено, СОХРАНЯЕМ его и применяем изменения
+        // Р•СЃР»Рё РѕРєРЅРѕ РЅР°Р№РґРµРЅРѕ, РЎРћРҐР РђРќРЇР•Рњ РµРіРѕ Рё РїСЂРёРјРµРЅСЏРµРј РёР·РјРµРЅРµРЅРёСЏ
         if (hwnd) {
-            g_gameHwnd = hwnd; // <--- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: сохраняем HWND
+            g_gameHwnd = hwnd; // <--- РљР›Р®Р§Р•Р’РћР• РР—РњР•РќР•РќРР•: СЃРѕС…СЂР°РЅСЏРµРј HWND
 
-            // 3. Устанавливаем новый заголовок
+            // 3. РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РЅРѕРІС‹Р№ Р·Р°РіРѕР»РѕРІРѕРє
             SetWindowTextA(hwnd, title);
 
-            // 4. Формируем абсолютный путь к иконке
+            // 4. Р¤РѕСЂРјРёСЂСѓРµРј Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ Рє РёРєРѕРЅРєРµ
             char exePath[MAX_PATH];
             GetModuleFileNameA(GetModuleHandleA(nullptr), exePath, MAX_PATH);
 
@@ -51,7 +51,7 @@ namespace Utils {
 
             std::string fullPath = dirPath + iconRelativePath;
 
-            // 5. Загружаем и устанавливаем иконку
+            // 5. Р—Р°РіСЂСѓР¶Р°РµРј Рё СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РёРєРѕРЅРєСѓ
             HICON hIconBig = reinterpret_cast<HICON>(LoadImageA(nullptr, fullPath.c_str(), IMAGE_ICON, 32, 32, LR_LOADFROMFILE));
             HICON hIconSmall = reinterpret_cast<HICON>(LoadImageA(nullptr, fullPath.c_str(), IMAGE_ICON, 16, 16, LR_LOADFROMFILE));
 

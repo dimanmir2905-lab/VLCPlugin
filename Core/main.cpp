@@ -2,7 +2,7 @@
 #define _WINSOCKAPI_ // Защищает от конфликта winsock.h и winsock2.h
 
 #include <windows.h>
-#include <d3d9.h>    // DirectX подключаем явно до sdk.hpp
+#include <d3d9.h>
 #include <d3dx9.h>
 
 #pragma warning(push)
@@ -13,6 +13,10 @@
 
 #include <thread>
 #include <iostream>
+#include <fstream>
+#include <chrono>
+#include <iomanip>
+#include <string>
 
 // Подключаем наши модули
 #include "patches/manager.hpp"
@@ -21,10 +25,12 @@
 #include "hooks/samp_events.hpp"
 #include "utils/window.hpp"
 #include "utils/chat.hpp"
-#include "utils/crash_handler.hpp" // <-- Добавьте этот инклуд
+#include "utils/crash_handler.hpp"
+#include "utils/samp_chat.hpp" // <-- МОДУЛЬ КАСТОМНОГО ЧАТА
 
 // === ПОДКЛЮЧАЕМ RAKHOOK ===
 #include <RakHook/rakhook.hpp>
+#include <RakNet/BitStream.h>
 
 // === ПОДКЛЮЧАЕМ IMGUI ===
 #include <imgui.h>
@@ -36,17 +42,37 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 using namespace sampapi::v037r3;
 
 namespace {
+    // ==========================================
+    // Простая система логирования в корень GTA
+    // ==========================================
+    void LogToFile(const std::string& message) {
+        char exePath[MAX_PATH];
+        if (GetModuleFileNameA(nullptr, exePath, MAX_PATH) == 0) return;
+
+        std::string path = exePath;
+        path = path.substr(0, path.find_last_of("\\/")) + "\\VialencePlugin.log";
+
+        std::ofstream logFile(path, std::ios::app);
+        if (logFile.is_open()) {
+            auto now = std::chrono::system_clock::now();
+            auto in_time_t = std::chrono::system_clock::to_time_t(now);
+            std::tm tm_buf;
+            localtime_s(&tm_buf, &in_time_t);
+
+            logFile << std::put_time(&tm_buf, "%Y-%m-%d %H:%M:%S") << " | " << message << "\n";
+        }
+    }
+
     // Глобальная переменная для хранения оригинального обработчика окон
     WNDPROC orig_WndProc = nullptr;
 
     LRESULT CALLBACK WndProcHook(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-        // 1. Отдаем сообщение ImGui. Если он его обработал, возвращаем 0 (стандарт Windows для обработанных сообщений)
+        // 1. Отдаем сообщение ImGui. Если он его обработал, возвращаем 0
         if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam)) {
             return 0;
         }
 
-        // 2. Иначе передаем оригинальной функции. 
-        // Добавлена защита: если orig_WndProc по какой-то причине NULL, используем стандартный обработчик
+        // 2. Иначе передаем оригинальной функции
         if (orig_WndProc != nullptr) {
             return CallWindowProcA(orig_WndProc, hWnd, uMsg, wParam, lParam);
         }
@@ -56,95 +82,112 @@ namespace {
 
     void InstallWndProcHook() {
         HWND hwnd = FindWindowA("GTA:SA:MP", nullptr);
-        if (!hwnd) {
-            hwnd = FindWindowA("GTA:SA", nullptr);
-        }
-        if (!hwnd) {
-            hwnd = GetActiveWindow(); // Запасной вариант
-        }
+        if (!hwnd) hwnd = FindWindowA("GTA:SA", nullptr);
+        if (!hwnd) hwnd = GetActiveWindow();
 
         if (hwnd) {
             orig_WndProc = (WNDPROC)SetWindowLongPtrA(hwnd, GWLP_WNDPROC, (LONG_PTR)WndProcHook);
-
-            // Выводим адрес окна, на которое повесили хук
-            char msg[128];
-            sprintf_s(msg, "[VLC] WndProcHook установлен на HWND: %p\n", hwnd);
-            OutputDebugStringA(msg);
+            LogToFile("WndProcHook успешно установлен на HWND: " + std::to_string(reinterpret_cast<uintptr_t>(hwnd)));
         }
         else {
-            OutputDebugStringA("[VLC] ОШИБКА: Не удалось найти окно игры для WndProcHook!\n");
+            LogToFile("ОШИБКА: Не удалось найти окно игры для WndProcHook!");
         }
     }
 
     void SetupNetworkHooks() {
         if (!rakhook::initialize()) {
-            OutputDebugStringA("[VLCPlugin] RakHook init FAILED!\n");
+            LogToFile("RakHook init FAILED!");
             return;
         }
-        OutputDebugStringA("[VLCPlugin] RakHook initialized successfully!\n");
+        LogToFile("RakHook initialized successfully!");
 
+        // Перехват ВХОДЯЩИХ RPC
         rakhook::on_receive_rpc += [](unsigned char& id, RakNet::BitStream* bs) -> bool {
-            // std::string msg = "[VLC] Incoming RPC ID: " + std::to_string(id) + "\n";
-            // OutputDebugStringA(msg.c_str());
-            return true;
+            if (!bs) return true;
+
+            // RPC 93: SendClientMessage (Системные сообщения, команды и т.д.)
+            if (id == 93) {
+                bs->ResetReadPointer();
+                uint32_t color = 0xFFFFFFFF;
+                uint32_t msgLength = 0;
+
+                if (bs->Read(color) && bs->Read(msgLength) && msgLength > 0 && msgLength < 1024) {
+                    std::string message(msgLength, '\0');
+                    bs->Read(message.data(), msgLength);
+
+                    // Передаем в наш ImGui чат
+                    Utils::SampChat::AddMessage(color, message);
+
+                    // Возвращаем false, чтобы SA-MP НЕ отрисовывал это сообщение в своем стандартном чате
+                    return false;
+                }
+            }
+
+            // RPC 101: ChatMessage (Сообщения от других игроков в чат)
+            if (id == 101) {
+                bs->ResetReadPointer();
+                uint8_t msgLength = 0;
+
+                if (bs->Read(msgLength) && msgLength > 0 && msgLength < 256) {
+                    std::string message(msgLength, '\0');
+                    bs->Read(message.data(), msgLength);
+
+                    // Белый цвет по умолчанию, так как цвет обычно зашит в текст ({FFFFFF}Nick: msg)
+                    Utils::SampChat::AddMessage(0xFFFFFFFF, message);
+
+                    return false; // Блокируем стандартный чат
+                }
+            }
+
+            return true; // Пропускаем все остальные RPC
             };
 
+        // Перехват ИСХОДЯЩИХ пакетов
         rakhook::on_send_packet += [](RakNet::BitStream* bs, PacketPriority& priority, PacketReliability& reliability, char& ord_channel) -> bool {
             return true;
             };
     }
 
     void InitThread() {
-        // 1. Применяем базовые патчи памяти
+        LogToFile("Запуск потока инициализации...");
+
         Patches::ApplyAll();
-
-        // 2. Патчи безопасности
         Patches::Security::ApplyAllSecurityFixes();
-
-        // 3. Инициализируем D3D хук (Splash Screen)
         Patches::SplashD3D::Initialize();
-
-        // 4. Перехваты событий чата
         Hooks::InitializeSampEvents();
 
-        // 5. Ждём полной инициализации объектов SAMP
         while (!RefChat() || !RefNetGame()) {
             Sleep(100);
         }
 
-        // 6. Инициализируем сетевой перехватчик (RakHook)
+        // Инициализируем чат ДО установки хуков
+        Utils::SampChat::Initialize();
+        LogToFile("Кастомный ImGui чат инициализирован.");
+
+        // Теперь устанавливаем хуки
         SetupNetworkHooks();
 
-        // 7. === ИНИЦИАЛИЗИРУЕМ ПЕРЕХВАТ КОМАНД ЧАТА ===
-        Hooks::InitializeChatCommands();
-
-        // 8. Настраиваем окно игры (эта функция теперь также сохраняет правильный HWND внутри Utils)
         Utils::SetCustomWindow("Vialence Online", "data\\Icons\\icon.ico");
 
-        // 9. Устанавливаем WndProc хук ИМЕННО на этот сохраненный HWND
         HWND gameHwnd = Utils::GetGameHwnd();
         if (gameHwnd) {
             orig_WndProc = (WNDPROC)SetWindowLongPtrA(gameHwnd, GWLP_WNDPROC, (LONG_PTR)WndProcHook);
-
-            // Проверка, что хук действительно установился
             if (orig_WndProc == nullptr) {
-                OutputDebugStringA("[VLC] ПРЕДУПРЕЖДЕНИЕ: SetWindowLongPtrA вернула NULL!\n");
+                LogToFile("ПРЕДУПРЕЖДЕНИЕ: SetWindowLongPtrA вернула NULL!");
             }
             else {
-                OutputDebugStringA("[VLC] WndProcHook успешно установлен\n");
+                LogToFile("WndProcHook успешно установлен.");
             }
         }
         else {
-            OutputDebugStringA("[VLC] ОШИБКА: Не удалось получить HWND окна игры для WndProcHook\n");
+            LogToFile("ОШИБКА: Не удалось получить HWND окна игры.");
         }
 
-        // 10. Приветствие
+        // Приветствие в чате
         Utils::PrintChat(0xB9C9BFFF, "Добро пожаловать на {ffa500}Vialence Role Play {B9C9BF}(0.3.7-R3)");
 
-        if (rakhook::samp_version() != rakhook::samp_ver::unknown) {
-            Utils::PrintChat(0x00FF00FF, "[VLC] {ffffff}Сетевой движок {00ff00}активирован!");
-            Utils::PrintChat(0x00FF00FF, "[VLC] {ffffff}Введите {00ff00}F4{ffffff} для открытия меню");
-        }
+        // Убрали лишнее сообщение об активации, оставили только запись в лог
+        LogToFile("Плагин успешно запущен и готов к работе.");
     }
 }
 
@@ -152,15 +195,16 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
         DisableThreadLibraryCalls(hModule);
 
-        // 1. ИНИЦИАЛИЗИРУЕМ ОБРАБОТЧИК КРАШЕЙ ПЕРВЫМ ДЕЛОМ
-        // Это гарантирует, что если InitThread или что-то еще упадет, мы это перехватим
+        // 1. Инициализируем обработчик крашей ПЕРВЫМ ДЕЛОМ
         Utils::InitializeCrashHandler();
+        LogToFile("DllMain: PROCESS_ATTACH. Crash Handler initialized.");
 
         // 2. Запускаем основной поток инициализации
         std::thread(InitThread).detach();
     }
     else if (ul_reason_for_call == DLL_PROCESS_DETACH) {
-        // === ВАЖНО: Восстанавливаем оригинальный WndProc при выгрузке ===
+        LogToFile("DllMain: PROCESS_DETACH. Очистка ресурсов...");
+
         HWND hwnd = FindWindowA("GTA:SA:MP", nullptr);
         if (!hwnd) hwnd = FindWindowA("GTA:SA", nullptr);
 
@@ -168,13 +212,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
             SetWindowLongPtrA(hwnd, GWLP_WNDPROC, (LONG_PTR)orig_WndProc);
         }
 
-        // Очистка ресурсов
         rakhook::destroy();
         Patches::SplashD3D::Shutdown();
         Patches::Security::ShutdownSecurityFixes();
-
-        // Примечание: специально восстанавливать фильтр исключений при DETACH не нужно,
-        // так как процесс завершается, и Windows очистит всё сама.
     }
     return TRUE;
 }

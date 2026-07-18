@@ -1,4 +1,4 @@
-#include "utils/crash_handler.hpp"
+п»ї#include "utils/crash_handler.hpp"
 #include <windows.h>
 #include <dbghelp.h>
 #include <fstream>
@@ -21,7 +21,7 @@ namespace Utils {
             return std::string(buffer);
         }
 
-        // Получаем гарантированный путь к папке с gta_sa.exe
+        // РџРѕР»СѓС‡Р°РµРј РіР°СЂР°РЅС‚РёСЂРѕРІР°РЅРЅС‹Р№ РїСѓС‚СЊ Рє РїР°РїРєРµ СЃ gta_sa.exe
         std::string GetGameDirectory() {
             char path[MAX_PATH];
             GetModuleFileNameA(nullptr, path, MAX_PATH);
@@ -36,7 +36,7 @@ namespace Utils {
             std::string dumpFileName = gameDir + "VialencePlugin_Crash_" + timestamp + ".dmp";
             std::string logFileName = gameDir + "VialencePlugin_Crash_" + timestamp + ".log";
 
-            // 1. Создаем текстовый лог
+            // 1. РЎРѕР·РґР°РµРј С‚РµРєСЃС‚РѕРІС‹Р№ Р»РѕРі
             std::ofstream logFile(logFileName);
             if (logFile.is_open()) {
                 logFile << "=== VLC Plugin Crash Report ===" << std::endl;
@@ -57,7 +57,7 @@ namespace Utils {
                 logFile.close();
             }
 
-            // 2. Создаем MiniDump
+            // 2. РЎРѕР·РґР°РµРј MiniDump
             HANDLE hFile = CreateFileA(dumpFileName.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
             if (hFile != INVALID_HANDLE_VALUE) {
                 MINIDUMP_EXCEPTION_INFORMATION mdei;
@@ -77,7 +77,7 @@ namespace Utils {
                 CloseHandle(hFile);
             }
 
-            // 3. Передаем управление дальше (например, в fastman92 или SAMPFUNCS)
+            // 3. РџРµСЂРµРґР°РµРј СѓРїСЂР°РІР»РµРЅРёРµ РґР°Р»СЊС€Рµ (РЅР°РїСЂРёРјРµСЂ, РІ fastman92 РёР»Рё SAMPFUNCS)
             if (g_previousFilter) {
                 return g_previousFilter(ExceptionInfo);
             }

@@ -1,14 +1,14 @@
-#pragma once
+п»ї#pragma once
 #include "sdk.hpp"
 #include <psapi.h>
 #include <vector>
 
-// Подключаем библиотеку psapi для линкера
+// РџРѕРґРєР»СЋС‡Р°РµРј Р±РёР±Р»РёРѕС‚РµРєСѓ psapi РґР»СЏ Р»РёРЅРєРµСЂР°
 #pragma comment(lib, "psapi.lib")
 
 namespace Memory {
 
-    // Безопасная запись значения по адресу
+    // Р‘РµР·РѕРїР°СЃРЅР°СЏ Р·Р°РїРёСЃСЊ Р·РЅР°С‡РµРЅРёСЏ РїРѕ Р°РґСЂРµСЃСѓ
     template<typename T>
     inline void Write(uintptr_t address, T value) {
         DWORD oldProtect;
@@ -19,7 +19,7 @@ namespace Memory {
         }
     }
 
-    // Заполнение памяти значением (например, NOP)
+    // Р—Р°РїРѕР»РЅРµРЅРёРµ РїР°РјСЏС‚Рё Р·РЅР°С‡РµРЅРёРµРј (РЅР°РїСЂРёРјРµСЂ, NOP)
     inline void Fill(uintptr_t address, BYTE value, size_t size) {
         DWORD oldProtect;
         if (VirtualProtect(reinterpret_cast<void*>(address), size, PAGE_EXECUTE_READWRITE, &oldProtect)) {
@@ -28,7 +28,7 @@ namespace Memory {
         }
     }
 
-    // Копирование блока данных в память
+    // РљРѕРїРёСЂРѕРІР°РЅРёРµ Р±Р»РѕРєР° РґР°РЅРЅС‹С… РІ РїР°РјСЏС‚СЊ
     inline void Copy(uintptr_t address, const void* data, size_t size) {
         DWORD oldProtect;
         if (VirtualProtect(reinterpret_cast<void*>(address), size, PAGE_EXECUTE_READWRITE, &oldProtect)) {
@@ -37,7 +37,7 @@ namespace Memory {
         }
     }
 
-    // Поиск адреса по байтовой сигнатуре (поддерживает '?' как wildcard)
+    // РџРѕРёСЃРє Р°РґСЂРµСЃР° РїРѕ Р±Р°Р№С‚РѕРІРѕР№ СЃРёРіРЅР°С‚СѓСЂРµ (РїРѕРґРґРµСЂР¶РёРІР°РµС‚ '?' РєР°Рє wildcard)
     inline uintptr_t FindPattern(HMODULE hModule, const char* pattern, const char* mask) {
         MODULEINFO moduleInfo;
         GetModuleInformation(GetCurrentProcess(), hModule, &moduleInfo, sizeof(moduleInfo));
@@ -61,7 +61,7 @@ namespace Memory {
         return 0;
     }
 
-    // Простой поиск строки (как в твоём оригинальном коде)
+    // РџСЂРѕСЃС‚РѕР№ РїРѕРёСЃРє СЃС‚СЂРѕРєРё (РєР°Рє РІ С‚РІРѕС‘Рј РѕСЂРёРіРёРЅР°Р»СЊРЅРѕРј РєРѕРґРµ)
     inline uintptr_t FindString(HMODULE hModule, const char* str) {
         MODULEINFO moduleInfo;
         GetModuleInformation(GetCurrentProcess(), hModule, &moduleInfo, sizeof(moduleInfo));

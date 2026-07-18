@@ -1,8 +1,8 @@
-#pragma once
+п»ї#pragma once
 #include "utils/memory.hpp"
 
 namespace Patches::Security {
-    // Применяет все патчи безопасности (память + хуки)
+    // РџСЂРёРјРµРЅСЏРµС‚ РІСЃРµ РїР°С‚С‡Рё Р±РµР·РѕРїР°СЃРЅРѕСЃС‚Рё (РїР°РјСЏС‚СЊ + С…СѓРєРё)
     void ApplyAllSecurityFixes();
     void ShutdownSecurityFixes();
 }

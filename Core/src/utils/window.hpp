@@ -1,10 +1,10 @@
-#pragma once
-#include <windows.h> // Добавлено для типа HWND
+п»ї#pragma once
+#include <windows.h> // Р”РѕР±Р°РІР»РµРЅРѕ РґР»СЏ С‚РёРїР° HWND
 
 namespace Utils {
-    // Устанавливает заголовок и иконку окна GTA:SA:MP
+    // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·Р°РіРѕР»РѕРІРѕРє Рё РёРєРѕРЅРєСѓ РѕРєРЅР° GTA:SA:MP
     void SetCustomWindow(const char* title, const char* iconRelativePath);
 
-    // Возвращает HWND найденного окна игры
+    // Р’РѕР·РІСЂР°С‰Р°РµС‚ HWND РЅР°Р№РґРµРЅРЅРѕРіРѕ РѕРєРЅР° РёРіСЂС‹
     HWND GetGameHwnd();
 }

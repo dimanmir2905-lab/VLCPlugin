@@ -503,8 +503,8 @@
     <ClInclude Include="src\sdk\sdk.hpp" />
     <ClInclude Include="src\utils\chat.hpp" />
     <ClInclude Include="src\utils\crash_handler.hpp" />
-    <ClInclude Include="src\utils\imgui_menu.hpp" />
     <ClInclude Include="src\utils\memory.hpp" />
+    <ClInclude Include="src\utils\samp_chat.hpp" />
     <ClInclude Include="src\utils\samp_reader.hpp" />
     <ClInclude Include="src\utils\window.hpp" />
   </ItemGroup>
@@ -531,7 +531,7 @@
     <ClCompile Include="src\patches\splash_d3d.cpp" />
     <ClCompile Include="src\utils\chat.cpp" />
     <ClCompile Include="src\utils\crash_handler.cpp" />
-    <ClCompile Include="src\utils\imgui_menu.cpp" />
+    <ClCompile Include="src\utils\samp_chat.cpp" />
     <ClCompile Include="src\utils\window.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

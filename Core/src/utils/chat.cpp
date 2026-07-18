@@ -1,13 +1,13 @@
-#include "utils/chat.hpp"
+ï»¿#include "utils/chat.hpp"
 #include <cstdarg>
 
-// Èñïîëüçóåì îôèöèàëüíîå ïðîñòðàíñòâî èìåí èç sampapi.h äëÿ 0.3.7-R3-1
+// Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÐ¼ Ð¾Ñ„Ð¸Ñ†Ð¸Ð°Ð»ÑŒÐ½Ð¾Ðµ Ð¿Ñ€Ð¾ÑÑ‚Ñ€Ð°Ð½ÑÑ‚Ð²Ð¾ Ð¸Ð¼ÐµÐ½ Ð¸Ð· sampapi.h Ð´Ð»Ñ 0.3.7-R3-1
 using namespace sampapi::v037r3;
 
 namespace Utils {
 
     void PrintChat(DWORD color, const char* message) {
-        // RefChat() - ýòî îôèöèàëüíûé ñïîñîá ïîëó÷èòü óêàçàòåëü íà CChat èç sampapi
+        // RefChat() - ÑÑ‚Ð¾ Ð¾Ñ„Ð¸Ñ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ð¹ ÑÐ¿Ð¾ÑÐ¾Ð± Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ð° CChat Ð¸Ð· sampapi
         CChat* pChat = RefChat();
         if (pChat) {
             pChat->AddMessage(color, message);

@@ -3,34 +3,27 @@
 #include <d3dx9.h>
 #include <cstring>
 #include <cmath>
-
+#include <string>
 #include "MinHook.h"
 #include "patches/splash_d3d.hpp"
 #include "utils/window.hpp"
-
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
 
-// === ИНКЛУДЫ IMGUI ===
+// === ИНКЛУДЫ IMGUI (ТОЛЬКО ДЛЯ ЧАТА) ===
 #include <imgui.h>
 #include <imgui_impl_dx9.h>
 #include <imgui_impl_win32.h>
-#include "../utils/imgui_menu.hpp"
-
-// Глобальные переменные для состояния ImGui
-static bool g_imguiInitialized = false;
-static HWND g_gameHwnd = nullptr;
+#include "../utils/samp_chat.hpp"
 
 namespace Patches::SplashD3D {
     namespace {
-
         using PresentFn = HRESULT(WINAPI*)(IDirect3DDevice9*, const RECT*, const RECT*, HWND, const RGNDATA*);
         using ResetFn = HRESULT(WINAPI*)(IDirect3DDevice9*, D3DPRESENT_PARAMETERS*);
 
         struct VertexColor { float x, y, z, rhw; D3DCOLOR color; };
         struct VertexTex { float x, y, z, rhw; D3DCOLOR color; float u, v; };
         struct GradientVertex { float x, y, z, rhw; D3DCOLOR color; };
-
         struct GlyphInfo { wchar_t ch; float u1, v1, u2, v2; float w, h; bool valid; };
 
         class AtlasFont {
@@ -324,7 +317,29 @@ namespace Patches::SplashD3D {
 
         HRESULT LoadTextureFromFile(IDirect3DDevice9* device, const char* path, IDirect3DTexture9** outTex) {
             if (!device || !outTex) return E_INVALIDARG;
-            return D3DXCreateTextureFromFileExA(device, path, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT, 0, D3DFMT_A8R8G8B8, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, nullptr, nullptr, outTex);
+
+            if (GetFileAttributesA(path) == INVALID_FILE_ATTRIBUTES) {
+                OutputDebugStringA(("[VLC] Texture file not found: " + std::string(path) + "\n").c_str());
+                return E_FAIL;
+            }
+
+            HRESULT hr = D3DXCreateTextureFromFileExA(
+                device, path,
+                D3DX_DEFAULT_NONPOW2, D3DX_DEFAULT_NONPOW2,
+                D3DX_DEFAULT, 0,
+                D3DFMT_A8R8G8B8,
+                D3DPOOL_MANAGED,
+                D3DX_DEFAULT, D3DX_DEFAULT, 0,
+                nullptr, nullptr,
+                outTex
+            );
+
+            if (FAILED(hr) || !*outTex) {
+                OutputDebugStringA(("[VLC] Failed to load texture: " + std::string(path) + "\n").c_str());
+                return hr;
+            }
+
+            return S_OK;
         }
 
         D3DCOLOR ApplyAlpha(D3DCOLOR color, float alphaMul) {
@@ -415,26 +430,21 @@ namespace Patches::SplashD3D {
         }
 
         void DrawAnimatedLine(IDirect3DDevice9* device, float x, float y, float w) {
-            // Фон полоски
             DrawFilledRect(device, x, y, w, 2.0f, ApplyAlpha(D3DCOLOR_ARGB(145, 70, 70, 70), g_overlayAlpha));
 
-            // Анимация туда-сюда (как в фазе загрузки)
             static float animPos = 0.0f;
             static float animDir = 1.0f;
             static DWORD lastMove = GetTickCount();
 
             DWORD now = GetTickCount();
-            if (now - lastMove > 50) { // Каждые 50мс
-                animPos += animDir * 2.0f; // Медленное движение
+            if (now - lastMove > 50) {
+                animPos += animDir * 2.0f;
                 if (animPos > w - 100.0f) animDir = -1.0f;
                 if (animPos < 0.0f) animDir = 1.0f;
                 lastMove = now;
             }
 
-            // Свечение (размытая копия позади)
             DrawFilledRect(device, x + animPos - 4.0f, y - 2.0f, 108.0f, 6.0f, ApplyAlpha(D3DCOLOR_ARGB(80, 26, 132, 245), g_overlayAlpha));
-
-            // Основная часть с градиентом
             DrawGradientRect(device, x + animPos, y - 1.0f, 100.0f, 4.0f,
                 ApplyAlpha(D3DCOLOR_ARGB(255, 26, 132, 245), g_overlayAlpha),
                 ApplyAlpha(D3DCOLOR_ARGB(255, 255, 255, 255), g_overlayAlpha));
@@ -443,7 +453,6 @@ namespace Patches::SplashD3D {
         void DrawBootPanel(IDirect3DDevice9* device, float screenW, float screenH) {
             if (!g_font.IsReady()) return;
 
-            // Плавное появление (fade-in за первые 500мс)
             const DWORD elapsed = GetTickCount() - g_startTick;
             float fadeIn = static_cast<float>(elapsed) / 500.0f;
             if (fadeIn > 1.0f) fadeIn = 1.0f;
@@ -453,23 +462,16 @@ namespace Patches::SplashD3D {
             const float x = screenW - panelW - 42.0f, y = screenH - panelH - 34.0f;
             const float badgeX = x + panelW - 144.0f, badgeY = y + 9.0f;
 
-            // УБРАЛИ тёмный фон — картинка видна полностью
-            // DrawFilledRect(device, 0, 0, screenW, screenH, ApplyAlpha(D3DCOLOR_ARGB(200, 10, 10, 15), currentAlpha));
-
-            // Синий бейдж
             DrawFilledRect(device, badgeX, badgeY, 152.0f, 25.0f, ApplyAlpha(D3DCOLOR_ARGB(225, 26, 132, 245), currentAlpha));
 
-            // Анимированная полоска с градиентом и свечением
             const float barX = x + 14.0f, barY = y + panelH - 10.0f, barW = panelW - 28.0f;
             DrawAnimatedLine(device, barX, barY, barW);
 
-            // Заголовок
             const float sessionScale = 0.88f, connectScale = 0.84f;
             const D3DCOLOR whiteText = ApplyAlpha(D3DCOLOR_ARGB(255, 245, 248, 255), currentAlpha);
             const D3DCOLOR outlineText = ApplyAlpha(D3DCOLOR_ARGB(220, 0, 0, 0), currentAlpha);
             g_font.DrawTextOutlined(device, x + 18.0f, y + 14.0f, whiteText, outlineText, kBootTitle, sessionScale);
 
-            // Слово "ЗАГРУЗКА"
             const wchar_t* connectWord = L"\x0417\x0410\x0413\x0420\x0423\x0417\x041A\x0410";
             const float wordW = g_font.MeasureText(connectWord, connectScale);
             const float dotW = g_font.MeasureText(L".", connectScale);
@@ -480,7 +482,6 @@ namespace Patches::SplashD3D {
             const D3DCOLOR connectOutlineColor = ApplyAlpha(D3DCOLOR_ARGB(200, 0, 54, 110), currentAlpha);
             g_font.DrawTextOutlined(device, connectTextX, badgeY + 3.5f, connectMainColor, connectOutlineColor, connectWord, connectScale);
 
-            // Анимированные точки
             const DWORD tick = (g_startTick == 0) ? 0 : GetTickCount();
             auto DotAlpha = [&](int index) -> int {
                 float local = (tick / 450.0f) - static_cast<float>(index);
@@ -500,14 +501,11 @@ namespace Patches::SplashD3D {
                     ApplyAlpha(D3DCOLOR_ARGB(alpha, 255, 255, 255), currentAlpha),
                     ApplyAlpha(D3DCOLOR_ARGB((alpha * 200) / 255, 0, 54, 110), currentAlpha), L".", connectScale);
             }
-
-            // УБРАЛИ логотип сверху и версию снизу — они уже есть на картинке
         }
 
         void DrawConnectionOverlay(IDirect3DDevice9* device, float screenW, float screenH) {
             if (!g_font.IsReady()) return;
 
-            // Плавное появление
             const DWORD elapsed = GetTickCount() - g_startTick;
             float fadeIn = static_cast<float>(elapsed) / 500.0f;
             if (fadeIn > 1.0f) fadeIn = 1.0f;
@@ -530,23 +528,17 @@ namespace Patches::SplashD3D {
             else if (g_finishMode == ConnectionFinishMode::Error)
                 statusColor = ApplyAlpha(D3DCOLOR_ARGB(255, 255, 220, 220), currentAlpha);
 
-            // === ТЕ ЖЕ КООРДИНАТЫ ЧТО И В BOOTPANEL ===
             const float panelW = 418.0f, panelH = 66.0f;
             const float x = screenW - panelW - 42.0f, y = screenH - panelH - 34.0f;
 
-            // === УБРАЛИ СИНИЙ БЕЙДЖ ===
-
-            // Текст статуса
             const float textX = x + 18.0f;
             const float statusY = y + 14.0f;
             g_font.DrawTextOutlined(device, textX, statusY, statusColor, outlineColor, statusWide, statusScale);
 
-            // Подсказка про /(q)uit
             if (g_finishMode != ConnectionFinishMode::Success) {
                 g_font.DrawTextOutlined(device, textX, statusY + 20.0f, hintColor, hintOutline, kQuitHint, 0.64f);
             }
 
-            // Анимированная полоска
             DrawAnimatedLine(device, x + 14.0f, y + panelH - 10.0f, panelW - 28.0f);
         }
 
@@ -579,16 +571,19 @@ namespace Patches::SplashD3D {
             if (stateBlock) { stateBlock->Apply(); stateBlock->Release(); }
         }
 
+        // ==========================================
+        // ПРЯМАЯ ИНИЦИАЛИЗАЦИЯ IMGUI (БЕЗ ImGuiMenu)
+        // ==========================================
+        static bool g_imguiInitialized = false;
+
         void InitializeImGui(IDirect3DDevice9* device, HWND hwnd) {
             if (g_imguiInitialized) return;
-            g_gameHwnd = hwnd;
 
             IMGUI_CHECKVERSION();
             ImGui::CreateContext();
             ImGuiIO& io = ImGui::GetIO();
-            io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard; // Включить управление с клавиатуры
+            io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-            // Загрузка шрифта с поддержкой кириллицы (Arial есть в любой Windows)
             ImFontConfig font_cfg;
             font_cfg.OversampleH = 1;
             font_cfg.OversampleV = 1;
@@ -597,44 +592,52 @@ namespace Patches::SplashD3D {
 
             ImGui::StyleColorsDark();
 
-            // Инициализация бэкендов
-            ImGui_ImplWin32_Init(g_gameHwnd);
+            ImGui_ImplWin32_Init(hwnd);
             ImGui_ImplDX9_Init(device);
 
             g_imguiInitialized = true;
+            OutputDebugStringA("[VLC] ImGui успешно инициализирован для чата\n");
         }
 
         HRESULT WINAPI HookedPresent(IDirect3DDevice9* device, const RECT* srcRect, const RECT* dstRect, HWND dstWindowOverride, const RGNDATA* dirtyRegion) {
             // 1. Отрисовка сплэш-скрина
             DrawOverlaySafe(device);
 
-            // 2. Ленивая инициализация ImGui
-            static bool menuInitialized = false;
-            if (!menuInitialized) {
-                // Берем HWND из нашего утилитарного модуля (гарантированно правильное окно)
+            // 2. Инициализация ImGui (только один раз)
+            if (!g_imguiInitialized) {
                 HWND targetHwnd = Utils::GetGameHwnd();
-
-                // Резервный вариант на самый крайний случай
                 if (!targetHwnd) targetHwnd = GetActiveWindow();
 
                 if (targetHwnd && device) {
-                    ImGuiMenu::Initialize(targetHwnd, device);
-                    menuInitialized = true;
-                    OutputDebugStringA("[VLC] ImGui инициализирован на целевом окне\n");
+                    InitializeImGui(device, targetHwnd);
                 }
             }
 
-            // 3. Вызов рендера
-            if (menuInitialized) {
-                ImGuiMenu::Render(device);
+            // 3. Рендер UI элементов (ТОЛЬКО ЧАТ)
+            if (g_imguiInitialized && ImGui::GetCurrentContext()) {
+                // Начало кадра ImGui
+                ImGui_ImplDX9_NewFrame();
+                ImGui_ImplWin32_NewFrame();
+                ImGui::NewFrame();
+
+                // Обновляем и рендерим кастомный чат
+                Utils::SampChat::Update(ImGui::GetIO().DeltaTime);
+                Utils::SampChat::Render();
+
+                // Конец кадра ImGui и рендер
+                ImGui::Render();
+                ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
             }
 
+            // 4. Вызов оригинальной функции Present
             return g_originalPresent(device, srcRect, dstRect, dstWindowOverride, dirtyRegion);
         }
 
         HRESULT WINAPI HookedReset(IDirect3DDevice9* device, D3DPRESENT_PARAMETERS* pp) {
-            // 1. Сбрасываем только ресурсы ImGui и D3D
-            ImGuiMenu::InvalidateDeviceObjects();
+            // Сбрасываем ресурсы ImGui
+            if (g_imguiInitialized) {
+                ImGui_ImplDX9_InvalidateDeviceObjects();
+            }
 
             g_font.Release();
             g_fontInitAttempted = false;
@@ -645,12 +648,12 @@ namespace Patches::SplashD3D {
             }
             g_bgLoadAttempted = false;
 
-            // 2. Вызываем оригинальный Reset
+            // Вызываем оригинальный Reset
             HRESULT hr = g_originalReset(device, pp);
 
-            // 3. Восстанавливаем ресурсы после успешного Reset
-            if (SUCCEEDED(hr)) {
-                ImGuiMenu::CreateDeviceObjects();
+            // Восстанавливаем ресурсы после успешного Reset
+            if (SUCCEEDED(hr) && g_imguiInitialized) {
+                ImGui_ImplDX9_CreateDeviceObjects();
             }
 
             return hr;
@@ -733,13 +736,21 @@ namespace Patches::SplashD3D {
     }
 
     void Shutdown() {
-        ImGuiMenu::Shutdown();
+        // Корректное завершение работы ImGui
+        if (g_imguiInitialized) {
+            ImGui_ImplDX9_Shutdown();
+            ImGui_ImplWin32_Shutdown();
+            ImGui::DestroyContext();
+            g_imguiInitialized = false;
+        }
 
-        // Твой оригинальный код очистки
         g_font.Release();
-        if (g_backgroundTex) { g_backgroundTex->Release(); g_backgroundTex = nullptr; }
+        if (g_backgroundTex) {
+            g_backgroundTex->Release();
+            g_backgroundTex = nullptr;
+        }
+
         MH_DisableHook(MH_ALL_HOOKS);
         MH_Uninitialize();
     }
-
 }

@@ -1146,9 +1146,6 @@
     <ClInclude Include="..\libs\imgui\backends\imgui_impl_win32.h">
       <Filter>Файлы заголовков\imgui\backends</Filter>
     </ClInclude>
-    <ClInclude Include="src\utils\imgui_menu.hpp">
-      <Filter>Файлы заголовков\utils</Filter>
-    </ClInclude>
     <ClInclude Include="src\utils\crash_handler.hpp">
       <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
@@ -1157,6 +1154,9 @@
     </ClInclude>
     <ClInclude Include="src\hooks\samp_events.hpp">
       <Filter>Файлы заголовков\hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\samp_chat.hpp">
+      <Filter>Файлы заголовков\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1226,10 +1226,10 @@
     <ClCompile Include="..\libs\imgui\imgui_demo.cpp">
       <Filter>Core\imgui</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\imgui_menu.cpp">
+    <ClCompile Include="src\utils\crash_handler.cpp">
       <Filter>Core\utils</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\crash_handler.cpp">
+    <ClCompile Include="src\utils\samp_chat.cpp">
       <Filter>Core\utils</Filter>
     </ClCompile>
   </ItemGroup>

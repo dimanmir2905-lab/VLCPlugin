@@ -1,5 +1,5 @@
-#pragma once
-#include "sdk.hpp" // Здесь уже подключен samp/samp.hpp со всеми классами
+п»ї#pragma once
+#include "sdk.hpp" // Р—РґРµСЃСЊ СѓР¶Рµ РїРѕРґРєР»СЋС‡РµРЅ samp/samp.hpp СЃРѕ РІСЃРµРјРё РєР»Р°СЃСЃР°РјРё
 
 namespace Utils {
     void PrintChat(DWORD color, const char* message);

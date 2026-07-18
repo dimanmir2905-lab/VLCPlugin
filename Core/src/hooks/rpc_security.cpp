@@ -1,10 +1,10 @@
-#include "hooks/rpc_security.hpp"
+п»ї#include "hooks/rpc_security.hpp"
 #include "utils/samp_reader.hpp"
 #include "utils/chat.hpp"
 #include <cstdint>
 
 // ==========================================
-// Минимальные определения структур RakNet
+// РњРёРЅРёРјР°Р»СЊРЅС‹Рµ РѕРїСЂРµРґРµР»РµРЅРёСЏ СЃС‚СЂСѓРєС‚СѓСЂ RakNet
 // ==========================================
 namespace RakNet {
     struct SystemAddress {
@@ -22,16 +22,16 @@ namespace RakNet {
     };
 }
 
-// Оригинальная функция Receive — это __thiscall метод класса
+// РћСЂРёРіРёРЅР°Р»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ Receive вЂ” СЌС‚Рѕ __thiscall РјРµС‚РѕРґ РєР»Р°СЃСЃР°
 typedef RakNet::Packet* (__thiscall* Receive_t)(void* pRakClient, uint32_t timeout);
 static Receive_t oReceive = nullptr;
 
 // ==========================================
-// ТРЮК для безопасного вызова __thiscall из __fastcall
+// РўР Р®Рљ РґР»СЏ Р±РµР·РѕРїР°СЃРЅРѕРіРѕ РІС‹Р·РѕРІР° __thiscall РёР· __fastcall
 // ==========================================
 struct RakClientWrapper {
     RakNet::Packet* Receive(uint32_t timeout) {
-        // Компилятор автоматически поместит 'this' в регистр ECX, как и требует __thiscall
+        // РљРѕРјРїРёР»СЏС‚РѕСЂ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РїРѕРјРµСЃС‚РёС‚ 'this' РІ СЂРµРіРёСЃС‚СЂ ECX, РєР°Рє Рё С‚СЂРµР±СѓРµС‚ __thiscall
         return oReceive(this, timeout);
     }
 };
@@ -47,10 +47,10 @@ namespace {
 }
 
 // ==========================================
-// Хук на Receive (__fastcall для MinHook)
+// РҐСѓРє РЅР° Receive (__fastcall РґР»СЏ MinHook)
 // ==========================================
 RakNet::Packet* __fastcall hReceive(void* pRakClient, void* edx, uint32_t timeout) {
-    // 1. БЕЗОПАСНЫЙ вызов оригинальной функции
+    // 1. Р‘Р•Р—РћРџРђРЎРќР«Р™ РІС‹Р·РѕРІ РѕСЂРёРіРёРЅР°Р»СЊРЅРѕР№ С„СѓРЅРєС†РёРё
     RakNet::Packet* packet = reinterpret_cast<RakClientWrapper*>(pRakClient)->Receive(timeout);
 
     if (packet && packet->length > 1 && packet->data && packet->data[0] == 199) {
@@ -142,13 +142,13 @@ RakNet::Packet* __fastcall hReceive(void* pRakClient, void* edx, uint32_t timeou
                 }
             }
 
-            // 2. ПРАВИЛЬНОЕ УДАЛЕНИЕ ПАКЕТА вместо порчи данных
+            // 2. РџР РђР’РР›Р¬РќРћР• РЈР”РђР›Р•РќРР• РџРђРљР•РўРђ РІРјРµСЃС‚Рѕ РїРѕСЂС‡Рё РґР°РЅРЅС‹С…
             if (dropPacket) {
                 if (packet->deleteData) {
                     delete[] packet->data;
                 }
                 delete packet;
-                return nullptr; // Возвращаем nullptr, чтобы SA-MP игнорировал этот пакет
+                return nullptr; // Р’РѕР·РІСЂР°С‰Р°РµРј nullptr, С‡С‚РѕР±С‹ SA-MP РёРіРЅРѕСЂРёСЂРѕРІР°Р» СЌС‚РѕС‚ РїР°РєРµС‚
             }
         }
     }
@@ -157,11 +157,11 @@ RakNet::Packet* __fastcall hReceive(void* pRakClient, void* edx, uint32_t timeou
 }
 
 // ==========================================
-// Инициализация и деинициализация
+// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ Рё РґРµРёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ
 // ==========================================
 namespace Hooks::RPCSecurity {
 
-    // Вспомогательная функция для определения версии (дублируем или выносим в общий хедер)
+    // Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅР°СЏ С„СѓРЅРєС†РёСЏ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РІРµСЂСЃРёРё (РґСѓР±Р»РёСЂСѓРµРј РёР»Рё РІС‹РЅРѕСЃРёРј РІ РѕР±С‰РёР№ С…РµРґРµСЂ)
     static bool IsSampR1() {
         uintptr_t sampBase = reinterpret_cast<uintptr_t>(GetModuleHandleA("samp.dll"));
         if (!sampBase) return false;
@@ -172,7 +172,7 @@ namespace Hooks::RPCSecurity {
         uintptr_t sampBase = reinterpret_cast<uintptr_t>(GetModuleHandleA("samp.dll"));
         if (!sampBase) return;
 
-        // ИСПРАВЛЕНО: 0x26E8CC для R1, 0x26E8DC для R3
+        // РРЎРџР РђР’Р›Р•РќРћ: 0x26E8CC РґР»СЏ R1, 0x26E8DC РґР»СЏ R3
         DWORD rakClientOffset = IsSampR1() ? 0x26E8CC : 0x26E8DC;
 
         void** pRakClientPtr = reinterpret_cast<void**>(sampBase + rakClientOffset);

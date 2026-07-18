@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "utils/memory.hpp"
 
 namespace Patches {
@@ -10,7 +10,7 @@ namespace Patches {
     void ApplyCustomData();
     void DisableSampDialogs();
 
-    // Главная функция, применяющая все патчи разом
+    // Р“Р»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ, РїСЂРёРјРµРЅСЏСЋС‰Р°СЏ РІСЃРµ РїР°С‚С‡Рё СЂР°Р·РѕРј
     void ApplyAll();
 
 }

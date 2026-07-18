@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 // Plugin SDK
 #include "gta.hpp"
@@ -9,6 +9,6 @@
 // MinHook
 #include <MinHook.h>
 
-// потом
+// РїРѕС‚РѕРј
 //#include "lua.hpp"
 //#include "imgui.hpp"
