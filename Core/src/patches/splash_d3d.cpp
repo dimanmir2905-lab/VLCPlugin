@@ -588,7 +588,14 @@ namespace Patches::SplashD3D {
             font_cfg.OversampleH = 1;
             font_cfg.OversampleV = 1;
             font_cfg.PixelSnapH = true;
-            io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\arial.ttf", 16.0f, &font_cfg, io.Fonts->GetGlyphRangesCyrillic());
+
+            // Загружаем именно ЖИРНЫЙ Arial (arialbd.ttf) и увеличиваем размер до 22-24
+            ImFont* chatFont = io.Fonts->AddFontFromFileTTF(
+                "C:\\Windows\\Fonts\\arialbd.ttf", // bd = Bold (Жирный)
+                22.0f,                             // Размер (попробуй 22.0f или 24.0f для Full HD)
+                nullptr,
+                io.Fonts->GetGlyphRangesCyrillic()
+            );
 
             ImGui::StyleColorsDark();
 

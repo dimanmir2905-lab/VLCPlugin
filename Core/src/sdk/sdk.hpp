@@ -8,7 +8,3 @@
 
 // MinHook
 #include <MinHook.h>
-
-// потом
-//#include "lua.hpp"
-//#include "imgui.hpp"
